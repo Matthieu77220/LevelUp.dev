@@ -1,0 +1,9 @@
+.env
+.env.local
+node_modules/
+.idea/
+.vscode/*.log
+*.log
+docs
+compose.yaml
+package-lock.json

@@ -1,0 +1,12 @@
+{
+  "name": "levelup-dev",
+  "private": true,
+  "scripts": {
+    "db:up": "docker compose up -d postgres",
+    "db:down": "docker compose down",
+    "db:logs": "docker compose logs -f postgres",
+    "db:status": "docker compose ps postgres",
+    "db:migrate": "powershell -NoProfile -ExecutionPolicy Bypass -File database/scripts/migrate.ps1",
+    "db:verify": "powershell -NoProfile -ExecutionPolicy Bypass -File database/scripts/verify.ps1"
+  }
+}
