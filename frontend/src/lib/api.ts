@@ -5,6 +5,7 @@ type RequestOptions = {
   expectedStatus: number
   payload?: unknown
   signal?: AbortSignal
+  timeoutMs?: number
 }
 
 export class ApiError extends Error {
@@ -23,8 +24,8 @@ export function isRecord(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
 }
 
-export async function request(path: string, { method, expectedStatus, payload, signal }: RequestOptions): Promise<unknown> {
-  const timeout = AbortSignal.timeout(12_000)
+export async function request(path: string, { method, expectedStatus, payload, signal, timeoutMs = 12_000 }: RequestOptions): Promise<unknown> {
+  const timeout = AbortSignal.timeout(timeoutMs)
   const requestSignal = signal ? AbortSignal.any([signal, timeout]) : timeout
   const response = await fetch(`${API_BASE_URL}${path}`, {
     method,

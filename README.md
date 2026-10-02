@@ -13,8 +13,12 @@ des jeux de role.
 Fonctionnel : landing, inscription, connexion, profil de compte, restauration
 de session, deconnexion et espace `/parcours` : 2 domaines, 13 blocs,
 33 competences, recherche et demarrage persistant au rang E sans attribution
-d'XP. Les cours, quetes, evaluations et boss restent a implementer ; les
-exemples de progression de la landing sont une maquette.
+d'XP. Les ateliers HTML et CSS proposent chacun 24 exercices de difficulté E à S,
+un éditeur, un aperçu isolé, une validation serveur et une progression persistante.
+La console renvoie seulement `OK` ou une erreur. Les cours, quêtes et boss restent
+à implémenter ; les exemples de progression de la landing sont une maquette.
+
+Voir le [catalogue HTML/CSS et ses règles de progression](content/web/README.md).
 
 Le [suivi V3](docs/roadmap-v3.md) detaille ce jalon et les prochaines etapes a
 partir du [cahier des charges original](docs/developer_leveling_system_spec_v3.json).
@@ -33,6 +37,7 @@ cette configuration. Ne jamais committer `.env`.
 
 ```powershell
 npm --prefix frontend ci
+npm --prefix content/web ci
 npm run db:up
 npm run db:migrate
 npm run db:verify
@@ -63,6 +68,7 @@ npm run lint
 npm run test:back
 go -C backend vet ./...
 npm run test:front
+npm run test:content
 ```
 
 Les tests navigateur utilisent Edge installe et le port 5174. Leurs reponses

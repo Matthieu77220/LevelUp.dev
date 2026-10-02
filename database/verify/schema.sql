@@ -27,6 +27,10 @@ BEGIN
         RAISE EXCEPTION 'Migration 0004_learning_catalog is required';
     END IF;
 
+    IF NOT EXISTS (SELECT 1 FROM app_private.schema_migrations WHERE version = '0005_web_exercises') THEN
+        RAISE EXCEPTION 'Migration 0005_web_exercises is required';
+    END IF;
+
     SELECT array_agg(expected.name) INTO missing
     FROM (VALUES ('quest_xp_amount_required'), ('submission_git_commit_required'),
                  ('profiles_user_username_fk')) AS expected(name)

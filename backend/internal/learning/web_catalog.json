@@ -1,0 +1,1660 @@
+[
+  {
+    "slug": "html",
+    "name": "HTML",
+    "version": "web-v1",
+    "promotions": [
+      {
+        "rank": "E",
+        "completed": 0,
+        "xp": 0
+      },
+      {
+        "rank": "D",
+        "completed": 4,
+        "xp": 150
+      },
+      {
+        "rank": "C",
+        "completed": 8,
+        "xp": 600
+      },
+      {
+        "rank": "B",
+        "completed": 12,
+        "xp": 1600
+      },
+      {
+        "rank": "A",
+        "completed": 16,
+        "xp": 3900
+      },
+      {
+        "rank": "S",
+        "completed": 24,
+        "xp": 18900
+      }
+    ],
+    "exercises": [
+      {
+        "title": "Hello World",
+        "instruction": "Affiche exactement « Hello World » dans un unique paragraphe.",
+        "allowed": {
+          "tags": [
+            "p"
+          ],
+          "attributes": []
+        },
+        "starter": "",
+        "slug": "html-01",
+        "rank": "E",
+        "position": 1,
+        "xp": 20,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": []
+      },
+      {
+        "title": "Titre et introduction",
+        "instruction": "Affiche un titre principal « Mon carnet », puis un paragraphe « Je découvre le HTML. ». Respecte cet ordre.",
+        "allowed": {
+          "tags": [
+            "h1",
+            "p"
+          ],
+          "attributes": []
+        },
+        "starter": "",
+        "slug": "html-02",
+        "rank": "E",
+        "position": 2,
+        "xp": 30,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-01"
+        ]
+      },
+      {
+        "title": "Une liste de matériel",
+        "instruction": "Crée une liste non ordonnée contenant exactement trois éléments : « Clavier », « Écran », « Souris », dans cet ordre.",
+        "allowed": {
+          "tags": [
+            "ul",
+            "li"
+          ],
+          "attributes": []
+        },
+        "starter": "",
+        "slug": "html-03",
+        "rank": "E",
+        "position": 3,
+        "xp": 40,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-02"
+        ]
+      },
+      {
+        "title": "Un sommaire navigable",
+        "instruction": "Crée un titre principal « Guide », un lien « Lire la suite » vers #suite, puis un titre de niveau 2 « La suite » identifié par suite. Le lien doit viser ce titre.",
+        "allowed": {
+          "tags": [
+            "h1",
+            "h2",
+            "a"
+          ],
+          "attributes": [
+            "id",
+            "href"
+          ]
+        },
+        "starter": "",
+        "slug": "html-04",
+        "rank": "E",
+        "position": 4,
+        "xp": 60,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "html-03"
+        ]
+      },
+      {
+        "title": "Une image documentée",
+        "instruction": "Crée une figure contenant une image /assets/montagne.jpg (800 × 600), une alternative « Sommet enneigé » et une légende « Alpes, 2026 ». Les dimensions doivent être déclarées dans le HTML.",
+        "allowed": {
+          "tags": [
+            "figure",
+            "img",
+            "figcaption"
+          ],
+          "attributes": [
+            "src",
+            "alt",
+            "width",
+            "height"
+          ]
+        },
+        "starter": "",
+        "slug": "html-05",
+        "rank": "D",
+        "position": 5,
+        "xp": 75,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-04"
+        ]
+      },
+      {
+        "title": "Les repères d’une page",
+        "instruction": "Structure une page : header avec h1 « Journal », nav nommée « Principale » avec un lien « Actualités » vers #actualites, main contenant une section #actualites avec h2 « Actualités » et un paragraphe libre non vide, puis footer « Édition 2026 ». Un seul main est autorisé.",
+        "allowed": {
+          "tags": [
+            "header",
+            "h1",
+            "nav",
+            "a",
+            "main",
+            "section",
+            "h2",
+            "p",
+            "footer"
+          ],
+          "attributes": [
+            "id",
+            "href",
+            "aria-label"
+          ]
+        },
+        "starter": "",
+        "slug": "html-06",
+        "rank": "D",
+        "position": 6,
+        "xp": 100,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-05"
+        ]
+      },
+      {
+        "title": "Un tableau lisible",
+        "instruction": "Présente un tableau légendé « Stock » : en-têtes de colonnes « Produit » et « Quantité », une ligne de données « Clavier » et «12». Utilise thead, tbody et scope pour les en-têtes.",
+        "allowed": {
+          "tags": [
+            "table",
+            "caption",
+            "colgroup",
+            "col",
+            "thead",
+            "tbody",
+            "tfoot",
+            "tr",
+            "th",
+            "td"
+          ],
+          "attributes": [
+            "scope"
+          ]
+        },
+        "starter": "",
+        "slug": "html-07",
+        "rank": "D",
+        "position": 7,
+        "xp": 125,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-06"
+        ]
+      },
+      {
+        "title": "Un premier formulaire",
+        "instruction": "Crée un formulaire POST vers /contact : un champ email obligatoire nommé email avec une étiquette « Adresse e-mail » explicitement associée par for/id, puis un bouton de soumission « Envoyer ». Aucun texte prérempli.",
+        "allowed": {
+          "tags": [
+            "form",
+            "label",
+            "input",
+            "button"
+          ],
+          "attributes": [
+            "method",
+            "action",
+            "id",
+            "for",
+            "name",
+            "type",
+            "required"
+          ]
+        },
+        "starter": "",
+        "slug": "html-08",
+        "rank": "D",
+        "position": 8,
+        "xp": 150,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "html-07"
+        ]
+      },
+      {
+        "title": "Des données sémantiques",
+        "instruction": "Crée une liste de descriptions : terme « Début » et valeur contenant une date lisible « 2 octobre 2026 », encodée 2026-10-02 ; terme « Niveau » et valeur « Autonome ». Deux paires exactement.",
+        "allowed": {
+          "tags": [
+            "dl",
+            "dt",
+            "dd",
+            "time"
+          ],
+          "attributes": [
+            "datetime"
+          ]
+        },
+        "starter": "",
+        "slug": "html-09",
+        "rank": "C",
+        "position": 9,
+        "xp": 180,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-08"
+        ]
+      },
+      {
+        "title": "Un choix exclusif",
+        "instruction": "Crée un formulaire avec fieldset et legend « Abonnement ». Propose deux radios de même nom plan et de valeurs mensuel et annuel, chacun étiqueté (« Mensuel », « Annuel »). Le choix est obligatoire et mensuel est coché par défaut. Ajoute « Continuer » comme bouton submit.",
+        "allowed": {
+          "tags": [
+            "form",
+            "fieldset",
+            "legend",
+            "label",
+            "input",
+            "select",
+            "option",
+            "optgroup",
+            "textarea",
+            "button",
+            "p"
+          ],
+          "attributes": [
+            "id",
+            "for",
+            "name",
+            "type",
+            "value",
+            "required",
+            "checked"
+          ]
+        },
+        "starter": "",
+        "slug": "html-10",
+        "rank": "C",
+        "position": 10,
+        "xp": 220,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-09"
+        ]
+      },
+      {
+        "title": "Une FAQ native",
+        "instruction": "Crée deux détails repliables appartenant au même groupe faq. Leurs résumés sont « Paiement » et « Livraison » et leurs paragraphes « Carte acceptée. » et « Sous trois jours. ». Seul Paiement est ouvert initialement.",
+        "allowed": {
+          "tags": [
+            "details",
+            "summary",
+            "p"
+          ],
+          "attributes": [
+            "name",
+            "open"
+          ]
+        },
+        "starter": "",
+        "slug": "html-11",
+        "rank": "C",
+        "position": 11,
+        "xp": 260,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-10"
+        ]
+      },
+      {
+        "title": "Un vrai document",
+        "instruction": "Écris un document HTML complet avec doctype, langue française, encodage UTF-8, titre d’onglet « Carnet de terrain », viewport width=device-width, initial-scale=1 et description « Observations de terrain ». Son body contient main, un h1 « Carnet de terrain » et un paragraphe non vide.",
+        "allowed": {
+          "tags": [
+            "html",
+            "head",
+            "meta",
+            "title",
+            "body",
+            "main",
+            "h1",
+            "p"
+          ],
+          "attributes": [
+            "lang",
+            "charset",
+            "name",
+            "content"
+          ]
+        },
+        "starter": "",
+        "fullDocument": true,
+        "slug": "html-12",
+        "rank": "C",
+        "position": 12,
+        "xp": 340,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "html-11"
+        ]
+      },
+      {
+        "title": "Des en-têtes croisés",
+        "instruction": "Crée un tableau « Températures » avec deux colonnes : « Ville » (id ville) et « Matin » (id matin). Deux lignes : « Paris » (en-tête de ligne id paris), 12 ; « Lyon » (id lyon), 15. Chaque cellule numérique référence explicitement son en-tête de ligne et matin avec headers. Déclare les scopes appropriés.",
+        "allowed": {
+          "tags": [
+            "table",
+            "caption",
+            "colgroup",
+            "col",
+            "thead",
+            "tbody",
+            "tfoot",
+            "tr",
+            "th",
+            "td"
+          ],
+          "attributes": [
+            "id",
+            "headers",
+            "scope",
+            "colspan",
+            "rowspan",
+            "span"
+          ]
+        },
+        "starter": "",
+        "slug": "html-13",
+        "rank": "B",
+        "position": 13,
+        "xp": 400,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-12"
+        ]
+      },
+      {
+        "title": "Images adaptatives",
+        "instruction": "Crée un picture : source /assets/portrait.webp de type image/webp jusqu’à 599px inclus ; source /assets/panorama.webp de type image/webp à partir de 600px ; repli img /assets/panorama.jpg, 1200 × 600, alternative « Vallée alpine ». Le repli propose aussi panorama.jpg 1200w et panorama-large.jpg 2400w (dans /assets/) avec sizes=\"100vw\".",
+        "allowed": {
+          "tags": [
+            "picture",
+            "source",
+            "img"
+          ],
+          "attributes": [
+            "src",
+            "srcset",
+            "sizes",
+            "media",
+            "type",
+            "alt",
+            "width",
+            "height"
+          ]
+        },
+        "starter": "",
+        "slug": "html-14",
+        "rank": "B",
+        "position": 14,
+        "xp": 500,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-13"
+        ]
+      },
+      {
+        "title": "Contrôles hors formulaire",
+        "instruction": "Crée form#commande en POST vers /commandes avec un champ number nommé quantite, étiqueté « Quantité », obligatoire, valeur 1, min 1, max 9. Place hors du formulaire un bouton submit « Payer » associé à commande et un bouton submit « Aperçu » associé au même formulaire mais envoyant en GET vers /apercu sans validation.",
+        "allowed": {
+          "tags": [
+            "form",
+            "fieldset",
+            "legend",
+            "label",
+            "input",
+            "select",
+            "option",
+            "optgroup",
+            "textarea",
+            "button",
+            "p"
+          ],
+          "attributes": [
+            "id",
+            "for",
+            "name",
+            "type",
+            "value",
+            "required",
+            "min",
+            "max",
+            "step",
+            "minlength",
+            "maxlength",
+            "pattern",
+            "autocomplete",
+            "checked",
+            "selected",
+            "disabled",
+            "multiple",
+            "method",
+            "action",
+            "form",
+            "formaction",
+            "formmethod",
+            "formenctype",
+            "formnovalidate",
+            "readonly",
+            "dirname",
+            "dir"
+          ]
+        },
+        "starter": "",
+        "slug": "html-15",
+        "rank": "B",
+        "position": 15,
+        "xp": 600,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-14"
+        ]
+      },
+      {
+        "title": "Écritures et langues",
+        "instruction": "Crée un article en français contenant h1 « Échanges », un paragraphe en arabe dirigé de droite à gauche « مرحبا بالعالم », un paragraphe « Auteur : Alice42 » où seul Alice42 est isolé bidirectionnellement, puis une annotation japonaise : 漢 avec sa lecture かん dans rt et des parenthèses de repli rp.",
+        "allowed": {
+          "tags": [
+            "article",
+            "h1",
+            "p",
+            "bdi",
+            "ruby",
+            "rt",
+            "rp"
+          ],
+          "attributes": [
+            "lang",
+            "dir"
+          ]
+        },
+        "starter": "",
+        "slug": "html-16",
+        "rank": "B",
+        "position": 16,
+        "xp": 800,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "html-15"
+        ]
+      },
+      {
+        "title": "Une édition scientifique",
+        "instruction": "Compose article avec header (h1 « Eau et climat », date time 2026-10-02 affichant « 2 octobre 2026 »), deux sections nommées par aria-labelledby vers leurs h2 « Résultats » et « Méthode » (ids resultats et methode). Résultats contient une citation longue « L’eau se réchauffe. » citant /etude et un lien de note [1] vers #note-1. Méthode contient un paragraphe non vide. Termine par footer avec une liste ordonnée contenant li#note-1, cite « Étude 2026 » et un lien retour vers #resultats.",
+        "allowed": {
+          "tags": [
+            "article",
+            "header",
+            "h1",
+            "time",
+            "section",
+            "h2",
+            "blockquote",
+            "p",
+            "a",
+            "footer",
+            "ol",
+            "li",
+            "cite"
+          ],
+          "attributes": [
+            "datetime",
+            "id",
+            "aria-labelledby",
+            "cite",
+            "href"
+          ]
+        },
+        "starter": "",
+        "slug": "html-17",
+        "rank": "A",
+        "position": 17,
+        "xp": 900,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-16"
+        ]
+      },
+      {
+        "title": "Média et alternatives",
+        "instruction": "Crée figure contenant une vidéo avec controls, preload metadata, poster /assets/poster.jpg, dimensions 1280 × 720, sans autoplay. Propose /assets/film.webm (video/webm), puis /assets/film.mp4 (video/mp4). Ajoute des sous-titres français /assets/fr.vtt (label Français, srclang fr, kind captions, default) et anglais /assets/en.vtt (English, en, captions). La vidéo inclut un lien de téléchargement du MP4. Après elle, une légende « Visite du laboratoire » et un lien « Transcription » vers /transcription.",
+        "allowed": {
+          "tags": [
+            "figure",
+            "video",
+            "source",
+            "track",
+            "a",
+            "figcaption"
+          ],
+          "attributes": [
+            "controls",
+            "preload",
+            "poster",
+            "width",
+            "height",
+            "src",
+            "type",
+            "kind",
+            "srclang",
+            "label",
+            "default",
+            "href",
+            "download"
+          ]
+        },
+        "starter": "",
+        "slug": "html-18",
+        "rank": "A",
+        "position": 18,
+        "xp": 1100,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-17"
+        ]
+      },
+      {
+        "title": "Un modèle inerte",
+        "instruction": "Crée template#fiche contenant article avec h2 « Produit », p « Description » et bouton type button « Choisir ». En dehors du template, main contient seulement h1 « Catalogue ». Le modèle doit rester inerte et ne pas ajouter d’article au document affiché.",
+        "allowed": {
+          "tags": [
+            "template",
+            "article",
+            "h2",
+            "p",
+            "button",
+            "main",
+            "h1"
+          ],
+          "attributes": [
+            "id",
+            "type"
+          ]
+        },
+        "starter": "",
+        "slug": "html-19",
+        "rank": "A",
+        "position": 19,
+        "xp": 1300,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-18"
+        ]
+      },
+      {
+        "title": "Une réservation native",
+        "instruction": "Crée form#reservation (POST /reservations), deux fieldsets avec légendes « Voyageur » et «Séjour». Voyageur contient des champs étiquetés nom (text, required, autocomplete name) et email (email, required, autocomplete email). Séjour contient nuits (number, required, min 1, max 30, step 1, valeur 2), chambre (select required : option vide « Choisir », puis simple et double, étiquettes libres) et conditions (checkbox required, valeur oui). Associe hors du formulaire un bouton submit « Réserver ». Tous les contrôles ont le name indiqué. Le formulaire vide est invalide ; nom Alice, email alice@example.test, chambre double et conditions cochées doivent le rendre valide.",
+        "allowed": {
+          "tags": [
+            "form",
+            "fieldset",
+            "legend",
+            "label",
+            "input",
+            "select",
+            "option",
+            "optgroup",
+            "textarea",
+            "button",
+            "p"
+          ],
+          "attributes": [
+            "id",
+            "for",
+            "name",
+            "type",
+            "value",
+            "required",
+            "min",
+            "max",
+            "step",
+            "minlength",
+            "maxlength",
+            "pattern",
+            "autocomplete",
+            "checked",
+            "selected",
+            "disabled",
+            "multiple",
+            "method",
+            "action",
+            "form",
+            "formaction",
+            "formmethod",
+            "formenctype",
+            "formnovalidate",
+            "readonly",
+            "dirname",
+            "dir"
+          ]
+        },
+        "starter": "",
+        "slug": "html-20",
+        "rank": "A",
+        "position": 20,
+        "xp": 1700,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "html-19"
+        ]
+      },
+      {
+        "title": "S · Matrice à trois axes",
+        "instruction": "Construis le tableau « Ventes 2026, en unités » avec deux lignes d’en-têtes : Région (id region, rowspan 2), Produit (id product, rowspan 2), groupe 2026 (id year, colspan 2), puis T1 (q1) et T2 (q2). Deux tbody regroupent Nord (north) et Sud (south), chacun sur deux lignes de produits A/B (ids north-a, north-b, south-a, south-b). Les données sont 10/20, 30/40, 50/60, 70/80. Chaque cellule de données référence explicitement ses quatre axes : région, produit, année et trimestre. Les scopes et fusions doivent représenter ces groupes.",
+        "allowed": {
+          "tags": [
+            "table",
+            "caption",
+            "colgroup",
+            "col",
+            "thead",
+            "tbody",
+            "tfoot",
+            "tr",
+            "th",
+            "td"
+          ],
+          "attributes": [
+            "id",
+            "headers",
+            "scope",
+            "colspan",
+            "rowspan",
+            "span"
+          ]
+        },
+        "starter": "",
+        "slug": "html-21",
+        "rank": "S",
+        "position": 21,
+        "xp": 1800,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-20"
+        ]
+      },
+      {
+        "title": "S · Contrat de soumission",
+        "instruction": "Crée form#dossier en POST /dossiers. Contrôles étiquetés : reference (text readonly, valeur REF-42), alias (text, dir auto, dirname alias.dir, valeur Alice), options (select multiple avec valeurs a,b,c ; a et c sélectionnées), accord (checkbox cochée, valeur oui). Un fieldset disabled, légendé « Archive », contient interne (valeur secret). Hors du formulaire : email required associé à dossier, et deux boutons submit associés, de name action et valeurs envoyer / brouillon. Envoyer utilise le POST normal ; Brouillon envoie vers /brouillons en POST sans validation. Après saisie de alice@example.test, les données doivent contenir reference, alias, alias.dir=ltr, options=a et c, accord=oui, email et l’action du bouton utilisé ; jamais interne.",
+        "allowed": {
+          "tags": [
+            "form",
+            "fieldset",
+            "legend",
+            "label",
+            "input",
+            "select",
+            "option",
+            "optgroup",
+            "textarea",
+            "button",
+            "p"
+          ],
+          "attributes": [
+            "id",
+            "for",
+            "name",
+            "type",
+            "value",
+            "required",
+            "min",
+            "max",
+            "step",
+            "minlength",
+            "maxlength",
+            "pattern",
+            "autocomplete",
+            "checked",
+            "selected",
+            "disabled",
+            "multiple",
+            "method",
+            "action",
+            "form",
+            "formaction",
+            "formmethod",
+            "formenctype",
+            "formnovalidate",
+            "readonly",
+            "dirname",
+            "dir"
+          ]
+        },
+        "starter": "",
+        "slug": "html-22",
+        "rank": "S",
+        "position": 22,
+        "xp": 2200,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-21"
+        ]
+      },
+      {
+        "title": "S · Document international",
+        "instruction": "Livre un document complet en français : titre et h1 « Atlas », meta UTF-8 et viewport mobile. Un lien initial « Aller au contenu » vise main#contenu. Deux navigations distinctes, nommées « Langues » et « Chapitres » : la première contient un lien /ar, hreflang ar, lang ar, texte العربية ; la seconde pointe vers #france et #japon. Dans main, deux articles nommés par leurs h2 (ids france et japon, textes France et Japon), chacun avec une section et un h3 non vide. France contient un paragraphe en arabe RTL avec bdi « Alice42 ». Japon contient un paragraphe en japonais avec ruby 漢 / rt かん et deux rp de repli. Tous les liens internes doivent aboutir et les ids être uniques.",
+        "allowed": {
+          "tags": [
+            "html",
+            "head",
+            "meta",
+            "title",
+            "body",
+            "a",
+            "nav",
+            "main",
+            "h1",
+            "article",
+            "h2",
+            "section",
+            "h3",
+            "p",
+            "bdi",
+            "ruby",
+            "rt",
+            "rp"
+          ],
+          "attributes": [
+            "lang",
+            "dir",
+            "charset",
+            "name",
+            "content",
+            "id",
+            "href",
+            "hreflang",
+            "aria-label",
+            "aria-labelledby"
+          ]
+        },
+        "starter": "",
+        "fullDocument": true,
+        "slug": "html-23",
+        "rank": "S",
+        "position": 23,
+        "xp": 2600,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "html-22"
+        ]
+      },
+      {
+        "title": "S · Dossier de synthèse",
+        "instruction": "Assemble un document HTML complet en français, titre et h1 « Observatoire », UTF-8, viewport mobile. Structure : lien initial vers #contenu, header avec h1 et nav nommée « Dossier » pointant vers #mesures et #inscription, main#contenu avec deux sections nommées par leurs h2 « Mesures » et « Inscription », footer non vide. Mesures contient la matrice complète de l’épreuve html-21 (mêmes ids et données), puis picture : source /assets/mesures-mobile.webp (image/webp, max-width 599px), repli /assets/mesures.jpg (1200 × 600, alt « Carte des mesures »). Inscription contient form#inscrire POST /inscriptions avec fieldset/legend « Participant », champs étiquetés nom (required, autocomplete name) et email (email required, autocomplete email), select required pays (option vide puis fr et jp), checkbox required consentement (valeur oui). Hors du formulaire : bouton submit « Envoyer » associé à inscrire. Une FAQ native details/summary « Confidentialité » contient un paragraphe non vide. Les liens internes, les étiquettes, les données soumises et les quatre axes du tableau doivent fonctionner ensemble.",
+        "allowed": {
+          "tags": [
+            "html",
+            "head",
+            "meta",
+            "title",
+            "body",
+            "a",
+            "header",
+            "h1",
+            "nav",
+            "main",
+            "section",
+            "h2",
+            "footer",
+            "table",
+            "caption",
+            "colgroup",
+            "col",
+            "thead",
+            "tbody",
+            "tfoot",
+            "tr",
+            "th",
+            "td",
+            "picture",
+            "source",
+            "img",
+            "form",
+            "fieldset",
+            "legend",
+            "label",
+            "input",
+            "select",
+            "option",
+            "optgroup",
+            "textarea",
+            "button",
+            "p",
+            "details",
+            "summary"
+          ],
+          "attributes": [
+            "lang",
+            "charset",
+            "content",
+            "href",
+            "aria-label",
+            "aria-labelledby",
+            "src",
+            "srcset",
+            "media",
+            "alt",
+            "width",
+            "height",
+            "id",
+            "headers",
+            "scope",
+            "colspan",
+            "rowspan",
+            "span",
+            "for",
+            "name",
+            "type",
+            "value",
+            "required",
+            "min",
+            "max",
+            "step",
+            "minlength",
+            "maxlength",
+            "pattern",
+            "autocomplete",
+            "checked",
+            "selected",
+            "disabled",
+            "multiple",
+            "method",
+            "action",
+            "form",
+            "formaction",
+            "formmethod",
+            "formenctype",
+            "formnovalidate",
+            "readonly",
+            "dirname",
+            "dir"
+          ]
+        },
+        "starter": "",
+        "fullDocument": true,
+        "slug": "html-24",
+        "rank": "S",
+        "position": 24,
+        "xp": 3400,
+        "language": "html",
+        "contributionPath": "content/web/html.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "html-23"
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "css",
+    "name": "CSS",
+    "version": "web-v1",
+    "promotions": [
+      {
+        "rank": "E",
+        "completed": 0,
+        "xp": 0
+      },
+      {
+        "rank": "D",
+        "completed": 4,
+        "xp": 150
+      },
+      {
+        "rank": "C",
+        "completed": 8,
+        "xp": 600
+      },
+      {
+        "rank": "B",
+        "completed": 12,
+        "xp": 1600
+      },
+      {
+        "rank": "A",
+        "completed": 16,
+        "xp": 3900
+      },
+      {
+        "rank": "S",
+        "completed": 24,
+        "xp": 18900
+      }
+    ],
+    "exercises": [
+      {
+        "title": "Une première couleur",
+        "instruction": "Rends le texte du paragraphe rouge (#ff0000).",
+        "allowed": {
+          "properties": [
+            "color"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<p>Hello World</p>",
+        "slug": "css-01",
+        "rank": "E",
+        "position": 1,
+        "xp": 20,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": []
+      },
+      {
+        "title": "Une hiérarchie typographique",
+        "instruction": "Donne au h1 une taille de 32px et une graisse 700. Donne au paragraphe une taille de 16px et une hauteur de ligne de 24px.",
+        "allowed": {
+          "properties": [
+            "font-size",
+            "font-weight",
+            "line-height"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<h1>Mon carnet</h1><p>Première page.</p>",
+        "slug": "css-02",
+        "rank": "E",
+        "position": 2,
+        "xp": 30,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-01"
+        ]
+      },
+      {
+        "title": "Mesurer une boîte",
+        "instruction": "La boîte .box doit mesurer 240px de large bordures comprises, avec 16px de padding de chaque côté et une bordure noire solide de 2px. Utilise border-box.",
+        "allowed": {
+          "properties": [
+            "box-sizing",
+            "width",
+            "padding",
+            "border"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"box\">Une boîte</div>",
+        "slug": "css-03",
+        "rank": "E",
+        "position": 3,
+        "xp": 40,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-02"
+        ]
+      },
+      {
+        "title": "Cibler sans déborder",
+        "instruction": "Le paragraphe .notice doit être bleu (#0000ff), son strong rouge (#ff0000). Le paragraphe .other et son strong doivent rester noirs (#000000).",
+        "allowed": {
+          "properties": [
+            "color"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<p class=\"notice\">Info <strong>urgente</strong></p><p class=\"other\">Autre <strong>texte</strong></p>",
+        "slug": "css-04",
+        "rank": "E",
+        "position": 4,
+        "xp": 60,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "css-03"
+        ]
+      },
+      {
+        "title": "Une barre flexible",
+        "instruction": "Transforme .bar en ligne flex de 400px de large et 80px de haut. Place ses deux enfants aux extrémités horizontales et centre-les verticalement.",
+        "allowed": {
+          "properties": [
+            "display",
+            "width",
+            "height",
+            "justify-content",
+            "align-items"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"bar\"><span>Logo</span><button>Compte</button></div>",
+        "slug": "css-05",
+        "rank": "D",
+        "position": 5,
+        "xp": 75,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-04"
+        ]
+      },
+      {
+        "title": "Une grille régulière",
+        "instruction": "Dispose les six articles dans une grille de trois colonnes égales, largeur totale 620px et espaces de 10px entre lignes et colonnes.",
+        "allowed": {
+          "properties": [
+            "display",
+            "width",
+            "grid-template-columns",
+            "gap"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"grid\"><article>A</article><article>B</article><article>C</article><article>D</article><article>E</article><article>F</article></div>",
+        "slug": "css-06",
+        "rank": "D",
+        "position": 6,
+        "xp": 100,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-05"
+        ]
+      },
+      {
+        "title": "Un rythme vertical",
+        "instruction": "Supprime la marge des paragraphes de .stack, limite .stack à 400px de large et ajoute exactement 16px entre deux paragraphes consécutifs, sans marge avant le premier ni après le dernier.",
+        "allowed": {
+          "properties": [
+            "margin",
+            "margin-top",
+            "margin-bottom",
+            "max-width"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"stack\"><p>Un</p><p>Deux</p><p>Trois</p></div>",
+        "slug": "css-07",
+        "rank": "D",
+        "position": 7,
+        "xp": 125,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-06"
+        ]
+      },
+      {
+        "title": "États d’un bouton",
+        "instruction": "Le bouton a un fond blanc au repos, bleu (#0000ff) au survol. Au focus clavier, affiche un contour solide de 3px noir avec décalage de 2px. Le contour ne doit pas apparaître au repos.",
+        "allowed": {
+          "properties": [
+            "background",
+            "background-color",
+            "outline",
+            "outline-offset"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<button>Continuer</button>",
+        "slug": "css-08",
+        "rank": "D",
+        "position": 8,
+        "xp": 150,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "css-07"
+        ]
+      },
+      {
+        "title": "Une grille responsive",
+        "instruction": "La grille occupe la largeur disponible sans débordement : une colonne en dessous de 600px, deux de 600 à 999px, trois dès 1000px. Colonnes égales, gap 16px. Elle doit aussi fonctionner à 320px.",
+        "allowed": {
+          "properties": [
+            "display",
+            "grid-template-columns",
+            "gap",
+            "min-width"
+          ],
+          "atRules": [
+            "media"
+          ]
+        },
+        "starter": "",
+        "markup": "<div class=\"grid\"><article>A</article><article>B</article><article>C</article><article>D</article><article>E</article><article>F</article></div>",
+        "slug": "css-09",
+        "rank": "C",
+        "position": 9,
+        "xp": 180,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-08"
+        ]
+      },
+      {
+        "title": "Un thème avec variables",
+        "instruction": "Déclare --accent: #004488 sur .panel. Le bouton et le lien héritent de cette couleur via var(--accent). Avec data-theme=\"night\" sur .panel, --accent devient #88ccff et les deux couleurs changent.",
+        "allowed": {
+          "properties": [
+            "--accent",
+            "color"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"panel\"><button>Valider</button><a href=\"#\">Retour</a></div>",
+        "slug": "css-10",
+        "rank": "C",
+        "position": 10,
+        "xp": 220,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-09"
+        ]
+      },
+      {
+        "title": "Défilement local",
+        "instruction": "Donne à .viewport une hauteur de 160px et un défilement vertical automatique. Son h2, sans marge, reste collé en haut du conteneur pendant le défilement, avec un fond blanc. .content fait 600px de haut.",
+        "allowed": {
+          "properties": [
+            "height",
+            "overflow-y",
+            "position",
+            "top",
+            "margin",
+            "background",
+            "background-color"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"viewport\"><h2>Journal</h2><div class=\"content\">Contenu long</div></div>",
+        "slug": "css-11",
+        "rank": "C",
+        "position": 11,
+        "xp": 260,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-10"
+        ]
+      },
+      {
+        "title": "Un badge sans HTML supplémentaire",
+        "instruction": "Ajoute le texte « Nouveau » avant le contenu du lien .release via ::before. Le badge est inline-block, avec 8px de marge à droite et une taille de police de 12px. Le texte du lien reste inchangé.",
+        "allowed": {
+          "properties": [
+            "content",
+            "display",
+            "margin-right",
+            "font-size"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<a class=\"release\" href=\"#\">Version 2</a>",
+        "slug": "css-12",
+        "rank": "C",
+        "position": 12,
+        "xp": 340,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "css-11"
+        ]
+      },
+      {
+        "title": "Une interface bidirectionnelle",
+        "instruction": "En écriture horizontale, .note mesure 240px bordures comprises. Utilise uniquement des propriétés logiques : padding inline début 24px/fin 8px, padding block 12px, bordure inline début 4px solide bleue. Le bord et les paddings doivent s’inverser en RTL.",
+        "allowed": {
+          "properties": [
+            "box-sizing",
+            "inline-size",
+            "padding-inline-start",
+            "padding-inline-end",
+            "padding-block",
+            "border-inline-start"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<div class=\"note\">Texte multilingue</div>",
+        "slug": "css-13",
+        "rank": "B",
+        "position": 13,
+        "xp": 400,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-12"
+        ]
+      },
+      {
+        "title": "Réagir au conteneur",
+        "instruction": "Les .host ont container-type inline-size. .narrow mesure 280px et .wide 680px. Dans chaque host, .cards est une grille avec gap 16px : une colonne lorsque son conteneur fait moins de 500px, deux sinon. Le viewport ne décide pas du nombre de colonnes.",
+        "allowed": {
+          "properties": [
+            "container-type",
+            "width",
+            "display",
+            "grid-template-columns",
+            "gap"
+          ],
+          "atRules": [
+            "container"
+          ]
+        },
+        "starter": "",
+        "markup": "<div class=\"host narrow\"><section class=\"cards\"><article class=\"card\"><h2>Court</h2><p>Un texte.</p><button>Choisir</button></article><article class=\"card\"><h2>Un titre beaucoup plus long qui occupe plusieurs lignes</h2><p>Une description.</p><button>Choisir</button></article></section></div><div class=\"host wide\"><section class=\"cards\"><article class=\"card\"><h2>Court</h2><p>Un texte.</p><button>Choisir</button></article><article class=\"card\"><h2>Un titre beaucoup plus long qui occupe plusieurs lignes</h2><p>Une description.</p><button>Choisir</button></article></section></div>",
+        "slug": "css-14",
+        "rank": "B",
+        "position": 14,
+        "xp": 500,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-13"
+        ]
+      },
+      {
+        "title": "Maîtriser la cascade",
+        "instruction": "Le CSS fourni définit le bouton bleu dans la couche vendor avec une forte spécificité. Déclare l’ordre vendor, components et rends le bouton rouge dans components. Interdits : !important et modification du CSS fourni.",
+        "allowed": {
+          "properties": [
+            "color"
+          ],
+          "atRules": [
+            "layer"
+          ]
+        },
+        "starter": "",
+        "markup": "<div id=\"app\"><button class=\"button\">Action</button></div>",
+        "fixtureCss": "@layer vendor { #app .button { color:blue; } }",
+        "requiredAtRules": [
+          "layer"
+        ],
+        "slug": "css-15",
+        "rank": "B",
+        "position": 15,
+        "xp": 600,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-14"
+        ]
+      },
+      {
+        "title": "Respecter le mouvement réduit",
+        "instruction": "Le bouton a normalement une transition transform de 200ms et se déplace de 4px sur l’axe X au survol. Si prefers-reduced-motion vaut reduce, supprime la transition et le déplacement, y compris au survol.",
+        "allowed": {
+          "properties": [
+            "transition",
+            "transition-property",
+            "transition-duration",
+            "transform"
+          ],
+          "atRules": [
+            "media"
+          ]
+        },
+        "starter": "",
+        "markup": "<button>Déplacer</button>",
+        "slug": "css-16",
+        "rank": "B",
+        "position": 16,
+        "xp": 800,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "css-15"
+        ]
+      },
+      {
+        "title": "Alignement par sous-grille",
+        "instruction": "Mets .cards en grille de deux colonnes égales, largeur 600px, gap 16px. Chaque .card occupe trois lignes du parent et reprend ces lignes avec subgrid. Supprime les marges des h2/p. Les paragraphes et boutons des deux cartes s’alignent malgré les titres de longueurs différentes.",
+        "allowed": {
+          "properties": [
+            "display",
+            "width",
+            "grid-template-columns",
+            "grid-template-rows",
+            "grid-row",
+            "gap",
+            "margin",
+            "min-width"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<section class=\"cards\"><article class=\"card\"><h2>Court</h2><p>Un texte.</p><button>Choisir</button></article><article class=\"card\"><h2>Un titre beaucoup plus long qui occupe plusieurs lignes</h2><p>Une description.</p><button>Choisir</button></article></section>",
+        "slug": "css-17",
+        "rank": "A",
+        "position": 17,
+        "xp": 900,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-16"
+        ]
+      },
+      {
+        "title": "Dimensionnement intrinsèque",
+        "instruction": "La grille remplit le viewport. Obtiens autant de colonnes que possible d’au moins 240px avec auto-fit et minmax, gap 16px ; sous 240px, une colonne doit se réduire sans débordement. Les longs mots peuvent se couper. Le h1 utilise clamp : minimum 24px, valeur fluide 4vw, maximum 48px. Vérification de 220 à 1440px.",
+        "allowed": {
+          "properties": [
+            "display",
+            "grid-template-columns",
+            "gap",
+            "min-width",
+            "overflow-wrap",
+            "font-size"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<h1>Catalogue</h1><div class=\"grid\"><article>UnMotSansEspaceVraimentTrèsLongPourTesterLaRésistance</article><article>B</article><article>C</article><article>D</article><article>E</article><article>F</article></div>",
+        "slug": "css-18",
+        "rank": "A",
+        "position": 18,
+        "xp": 1100,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-17"
+        ]
+      },
+      {
+        "title": "Un état piloté par le formulaire",
+        "instruction": "Le formulaire a une bordure solide de 2px. Utilise :has() pour que cette bordure soit rouge si son email required est invalide, verte (#008000) s’il est valide. Le bouton suit la même couleur. La mise à jour doit fonctionner après saisie sans JavaScript.",
+        "allowed": {
+          "properties": [
+            "border",
+            "border-color",
+            "color"
+          ],
+          "atRules": []
+        },
+        "starter": "",
+        "markup": "<form class=\"form\"><label>Email<input type=\"email\" required></label><button type=\"button\">Envoyer</button></form>",
+        "requiredSelectors": [
+          ":has("
+        ],
+        "slug": "css-19",
+        "rank": "A",
+        "position": 19,
+        "xp": 1300,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-18"
+        ]
+      },
+      {
+        "title": "Une édition imprimable",
+        "instruction": "À l’écran, conserve nav et .actions visibles. À l’impression, masque-les, mets le texte du body en noir sur blanc, évite les coupures à l’intérieur de article, et ajoute après chaque lien d’article son URL entre parenthèses, précédée d’une espace. Ces URL ne sont pas ajoutées à l’écran.",
+        "allowed": {
+          "properties": [
+            "display",
+            "color",
+            "background",
+            "background-color",
+            "break-inside",
+            "content"
+          ],
+          "atRules": [
+            "media"
+          ]
+        },
+        "starter": "",
+        "markup": "<nav>Navigation</nav><article><h1>Rapport</h1><a href=\"/rapport\">Source</a></article><div class=\"actions\">Partager</div>",
+        "slug": "css-20",
+        "rank": "A",
+        "position": 20,
+        "xp": 1700,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "css-19"
+        ]
+      },
+      {
+        "title": "S · Composant réutilisable",
+        "instruction": "Construis deux catalogues indépendants du viewport. .host utilise un conteneur inline-size ; .narrow fait 280px, .wide 680px. Chaque .catalog utilise une colonne sous 500px de conteneur, deux sinon, gap 16px. Les cartes reprennent trois lignes du parent via subgrid, titres et paragraphes sans marge. Les textes sans espaces doivent se couper et les cartes ne doivent pas déborder. Le correcteur échange les largeurs des conteneurs et allonge un titre : les alignements doivent rester corrects.",
+        "allowed": {
+          "properties": [
+            "container-type",
+            "width",
+            "display",
+            "grid-template-columns",
+            "grid-template-rows",
+            "grid-row",
+            "gap",
+            "min-width",
+            "margin",
+            "overflow-wrap"
+          ],
+          "atRules": [
+            "container"
+          ]
+        },
+        "starter": "",
+        "markup": "<div class=\"host narrow\"><section class=\"catalog\"><article class=\"card\"><h2>Court</h2><p>Texte.</p><button>Choisir</button></article><article class=\"card\"><h2>Un titre plus long pour éprouver les lignes</h2><p>Texte.</p><button>Choisir</button></article></section></div><div class=\"host wide\"><section class=\"catalog\"><article class=\"card\"><h2>Court</h2><p>Texte.</p><button>Choisir</button></article><article class=\"card\"><h2>Un titre plus long pour éprouver les lignes</h2><p>Texte.</p><button>Choisir</button></article></section></div>",
+        "slug": "css-21",
+        "rank": "S",
+        "position": 21,
+        "xp": 1800,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-20"
+        ]
+      },
+      {
+        "title": "S · Architecture de cascade",
+        "instruction": "Déclare les couches vendor, tokens, components, overrides dans cet ordre. Le CSS fourni contient un vendor très spécifique et une règle components verte. Dans tokens, .panel fournit --accent #004488 (ou #88ccff pour data-theme night). Dans components, les boutons consomment var(--accent). Dans overrides, .danger devient rouge ; .danger[data-reset] utilise revert-layer pour retrouver la couleur components. Sans !important. Ces comportements doivent se combiner dans les deux thèmes et lorsque --accent est remplacée à la volée.",
+        "allowed": {
+          "properties": [
+            "--accent",
+            "color"
+          ],
+          "atRules": [
+            "layer"
+          ]
+        },
+        "starter": "",
+        "markup": "<div id=\"app\"><div class=\"panel\"><button class=\"normal\">Normal</button><button class=\"danger\">Danger</button><button class=\"danger\" data-reset>Réinitialisé</button></div></div>",
+        "fixtureCss": "@layer vendor, tokens, components, overrides; @layer vendor { #app .panel button { color:purple; } } @layer components { button { color:green; } }",
+        "requiredAtRules": [
+          "layer"
+        ],
+        "slug": "css-22",
+        "rank": "S",
+        "position": 22,
+        "xp": 2200,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-21"
+        ]
+      },
+      {
+        "title": "S · Plusieurs modes de lecture",
+        "instruction": "Avec des propriétés logiques uniquement pour les dimensions, bords et espacements, .note mesure 240px sur son axe inline (border-box), padding inline début 24px/fin 8px, padding block 12px, bordure inline début 4px solide bleue. Le texte long doit se couper. Ce contrat reste vrai en LTR, RTL et vertical-rl. Le bouton a un contour de focus clavier 3px solide bleu avec décalage 2px. Sa transition color vaut 200ms normalement, 0ms en mouvement réduit. En couleurs forcées, conserve un contour de focus solide et forced-color-adjust auto.",
+        "allowed": {
+          "properties": [
+            "box-sizing",
+            "inline-size",
+            "padding-inline-start",
+            "padding-inline-end",
+            "padding-block",
+            "border-inline-start",
+            "overflow-wrap",
+            "outline",
+            "outline-offset",
+            "transition",
+            "transition-property",
+            "transition-duration",
+            "forced-color-adjust"
+          ],
+          "atRules": [
+            "media"
+          ]
+        },
+        "starter": "",
+        "markup": "<div class=\"note\">UnMotVraimentLongSansAucunEspacePourÉprouverLesDifférentsModesDeLecture</div><button>Continuer</button>",
+        "slug": "css-23",
+        "rank": "S",
+        "position": 23,
+        "xp": 2600,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": false,
+        "prerequisites": [
+          "css-22"
+        ]
+      },
+      {
+        "title": "S · Interface sous contraintes",
+        "instruction": "Construis le tableau de bord fourni avec les couches base, components, preferences. Tout utilise border-box. .shell est une grille : navigation de 180px et contenu flexible, gap 24px ; à 600px ou moins, une colonne. main a 16px de padding inline et peut rétrécir. .host est un conteneur inline-size : les cartes sont sur une colonne sous 500px de conteneur, deux sinon, gap 16px ; chacune reprend trois lignes par subgrid. h2/p sans marges, longs textes sans débordement. .shell définit --accent #004488, remplacée par #88ccff sous data-theme night ; .action et .status l’utilisent. Focus clavier de .action : contour solide 3px de cette couleur, décalage 2px. Transition transform 200ms, supprimée en mouvement réduit. À l’impression : .shell en block, nav et .action masquées, coupures évitées dans .card, .status noire. Le tout doit résister à 320/600/1024/1440px, au RTL, aux titres longs, aux deux thèmes et à l’impression.",
+        "allowed": {
+          "properties": [
+            "box-sizing",
+            "display",
+            "grid-template-columns",
+            "grid-template-rows",
+            "grid-row",
+            "gap",
+            "min-width",
+            "padding-inline",
+            "container-type",
+            "margin",
+            "overflow-wrap",
+            "--accent",
+            "color",
+            "transition",
+            "transition-property",
+            "transition-duration",
+            "outline",
+            "outline-offset",
+            "break-inside"
+          ],
+          "atRules": [
+            "layer",
+            "media",
+            "container"
+          ]
+        },
+        "starter": "",
+        "markup": "<div class=\"shell\"><nav>Navigation</nav><main><h1>Observatoire</h1><div class=\"host\"><section class=\"cards\"><article class=\"card\"><h2>Court</h2><p>Un texte.</p><button>Choisir</button></article><article class=\"card\"><h2>Un titre beaucoup plus long qui occupe plusieurs lignes</h2><p>Une description.</p><button>Choisir</button></article></section></div><label>Email<input type=\"email\" required></label><button class=\"action\" type=\"button\">Enregistrer</button><p class=\"status\">Synchronisation</p></main></div>",
+        "requiredAtRules": [
+          "layer",
+          "container",
+          "media"
+        ],
+        "slug": "css-24",
+        "rank": "S",
+        "position": 24,
+        "xp": 3400,
+        "language": "css",
+        "contributionPath": "content/web/css.mjs",
+        "milestone": true,
+        "prerequisites": [
+          "css-23"
+        ]
+      }
+    ]
+  }
+]

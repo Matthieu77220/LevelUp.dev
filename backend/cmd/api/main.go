@@ -65,7 +65,7 @@ func run(logger *slog.Logger) error {
 		Handler:           httpapi.NewRouter(authHandler, learning.NewHandler(learning.NewStore(pool), logger), cfg.FrontendOrigin, logger, pool.Ping),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       10 * time.Second,
-		WriteTimeout:      15 * time.Second,
+		WriteTimeout:      32 * time.Second,
 		IdleTimeout:       60 * time.Second,
 		MaxHeaderBytes:    1 << 20,
 	}

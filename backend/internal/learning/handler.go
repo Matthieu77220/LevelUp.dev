@@ -12,12 +12,13 @@ import (
 )
 
 type Handler struct {
-	store  *Store
-	logger *slog.Logger
+	store           *Store
+	logger          *slog.Logger
+	evaluationSlots chan struct{}
 }
 
 func NewHandler(store *Store, logger *slog.Logger) *Handler {
-	return &Handler{store: store, logger: logger}
+	return &Handler{store: store, logger: logger, evaluationSlots: make(chan struct{}, 2)}
 }
 
 func (h *Handler) Catalog(w http.ResponseWriter, r *http.Request, user auth.User) {

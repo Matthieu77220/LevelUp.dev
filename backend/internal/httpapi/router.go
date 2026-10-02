@@ -22,6 +22,8 @@ func NewRouter(authHandler *auth.Handler, learningHandler *learning.Handler, all
 	mux.HandleFunc("GET /api/v1/auth/me", authHandler.Me)
 	mux.HandleFunc("GET /api/v1/learning/catalog", authHandler.RequireUser(learningHandler.Catalog))
 	mux.HandleFunc("POST /api/v1/learning/skills/{skillID}/start", authHandler.RequireUser(learningHandler.StartSkill))
+	mux.HandleFunc("GET /api/v1/learning/tracks/{track}", authHandler.RequireUser(learningHandler.Exercises))
+	mux.Handle("POST /api/v1/learning/tracks/{track}/exercises/{exercise}/submit", NewRateLimiter(60, time.Minute).Middleware(http.HandlerFunc(authHandler.RequireUser(learningHandler.SubmitExercise))))
 	mux.HandleFunc("GET /health", func(w http.ResponseWriter, r *http.Request) {
 		ctx, cancel := context.WithTimeout(r.Context(), 2*time.Second)
 		defer cancel()

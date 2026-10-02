@@ -8,6 +8,8 @@
     "lint": "npm --prefix frontend run lint",
     "test:back": "go -C backend test ./...",
     "test:front": "npm --prefix frontend run test:e2e",
+    "test:content": "node content/web/generate.mjs --check && npm --prefix content/web test",
+    "content:generate": "node content/web/generate.mjs",
     "db:up": "docker compose up -d --wait postgres",
     "db:down": "docker compose down",
     "db:logs": "docker compose logs -f postgres",

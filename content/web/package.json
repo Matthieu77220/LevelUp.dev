@@ -1,0 +1,7 @@
+{
+  "name": "levelup-web-evaluator",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test evaluator.test.mjs", "generate": "node generate.mjs" },
+  "dependencies": { "parse5": "^7.3.0", "postcss": "^8.5.6" }
+}

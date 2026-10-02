@@ -151,8 +151,8 @@ function SkillDetails({ skill, onUpdate }: { skill: Skill; onUpdate: (skill: Ski
     <ol className="rank-ladder" aria-label="Échelle des rangs">{ranks.filter(rank => rank !== 'UNRANKED').map(rank => <li key={rank} className={ranks.indexOf(rank) <= ranks.indexOf(skill.rank) ? 'is-reached' : ''} aria-current={rank === skill.rank ? 'step' : undefined}><span>{rank}</span><span>{rankLabels[rank]}</span>{rank === skill.rank && <Check size={14} />}</li>)}</ol>
     {skill.locked ? <p className="skill-note"><LockKeyhole size={17} /> Valide les prérequis pour commencer cette compétence.</p> : skill.rank === 'UNRANKED' ? <>
       <button className="paths-primary" onClick={begin} disabled={submitting}>{submitting ? 'Enregistrement…' : 'Commencer cette compétence'}<ArrowRight size={17} /></button>
-      <p className="skill-note">Ton choix sera enregistré au rang E. Les cours de cette compétence sont en préparation.</p>
-    </> : <p className="skill-note"><BookOpen size={20} /> Ton parcours est enregistré. Les cours de cette compétence arrivent prochainement.</p>}
+      <p className="skill-note">Ton choix sera enregistré au rang E.{['html', 'css'].includes(skill.slug) ? ' 24 exercices t’attendent, jusqu’aux épreuves de maîtrise.' : ' Les cours de cette compétence sont en préparation.'}</p>
+    </> : ['html', 'css'].includes(skill.slug) ? <Link className="paths-primary" to={`/parcours/${skill.slug}`}>Ouvrir les exercices<ArrowRight size={17} /></Link> : <p className="skill-note"><BookOpen size={20} /> Ton parcours est enregistré. Les cours de cette compétence arrivent prochainement.</p>}
     {error && <p className="paths-error" role="alert">{error}</p>}
     {notice && <p className="paths-success" role="status">{notice}</p>}
   </aside>

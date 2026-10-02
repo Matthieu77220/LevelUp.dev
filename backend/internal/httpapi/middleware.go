@@ -7,6 +7,7 @@ import (
 	"net"
 	"net/http"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 )
@@ -148,7 +149,11 @@ func remoteIP(r *http.Request) string {
 
 func RequestDeadline(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		ctx, cancel := context.WithTimeout(r.Context(), 10*time.Second)
+		budget := 10 * time.Second
+		if r.Method == http.MethodPost && strings.HasPrefix(r.URL.Path, "/api/v1/learning/tracks/") && strings.HasSuffix(r.URL.Path, "/submit") {
+			budget = 28 * time.Second
+		}
+		ctx, cancel := context.WithTimeout(r.Context(), budget)
 		defer cancel()
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})

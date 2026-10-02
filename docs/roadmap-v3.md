@@ -63,9 +63,8 @@ explicites et ne changent pas les regles de progression de ce jalon.
 
 ## Prochaines livraisons
 
-1. Definir les conditions de validation par rang, les prerequis techniques et
-   les recompenses de pratique, puis le service transactionnel et idempotent
-   d'attribution d'XP. Le bareme exact n'est pas donne dans la V3.
+1. Étendre les contrats de validation et le service d'XP HTML/CSS aux autres
+   compétences. Le barème HTML/CSS est décrit dans le catalogue de contenu.
 2. Publier les premiers cours et exemples de rang E, avec contenu versionne.
 3. Livrer la premiere boucle de pratique indiquee par la V3 : C `ft_strlen`,
    editeur inline, soumission, worker et sandbox ephemere, contraintes, tests
@@ -73,10 +72,31 @@ explicites et ne changent pas les regles de progression de ce jalon.
 4. Projets Git avec commit SHA, quetes, avatar/cosmetiques, collaboration,
    revues, puis moteur de boss et statistiques, Enterprise Core et ATLAS.
 
-Les cours et evaluations ne sont pas encore disponibles. L'interface l'indique
-sur la fiche de competence ; aucun bouton ne pretend executer ou valider du
-code. Les seuils d'XP, un niveau global et les regles de passage de rang ne sont
-pas simules.
+Les cours et les évaluations des autres compétences restent à construire.
+HTML et CSS disposent désormais d'une boucle réelle de pratique et de validation.
+
+## Jalon HTML/CSS
+
+`/parcours/html` et `/parcours/css` proposent 24 exercices chacun, de difficulté
+E à S. La migration `0005_web_exercises` publie les niveaux, modules et exercices.
+Les consignes, restrictions, solutions de référence, assertions et règles d'XP
+sont versionnées dans [content/web](../content/web/README.md).
+
+Le feedback est minimal à tous les niveaux, conformément à la décision produit
+prise après la V3 : `OK` ou une première erreur de console. Cela remplace pour
+ces deux parcours le feedback détaillé prévu initialement aux rangs E et D.
+Les corrections de référence ne sont pas servies à l'élève.
+
+API authentifiée : `GET /api/v1/learning/tracks/{html|css}` et
+`POST /api/v1/learning/tracks/{track}/exercises/{slug}/submit` avec `{ "source": "…" }`.
+Le serveur lance le correcteur dans un navigateur isolé. Après réussite, une
+transaction verrouille la progression de compétence, enregistre le module et
+attribue l'XP une seule fois. Les prérequis et la publication sont revérifiés
+au moment de l'écriture. Les échecs ne retirent jamais une réussite antérieure.
+
+S exige 24 validations et 18 900 XP, dont les quatre épreuves de difficulté S.
+Le rang global et les rangs de domaine ne sont pas calculés à partir de ces
+seuls exercices. Voir les limites de l'isolation locale dans le README du contenu.
 
 ## Validation
 

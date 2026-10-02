@@ -14,3 +14,4 @@ test-results/
 playwright-report/
 .local/
 package-lock.json
+!content/web/package-lock.json
