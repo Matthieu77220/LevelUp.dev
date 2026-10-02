@@ -1,0 +1,754 @@
+// Developer Leveling System - conceptual relational model (V1)
+// Import this file at https://dbdiagram.io or with any DBML-compatible tool.
+
+Enum user_status {
+  PENDING
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
+Enum rank_code {
+  UNRANKED
+  E
+  D
+  C
+  B
+  A
+  S
+}
+
+Enum content_status {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+Enum progress_status {
+  LOCKED
+  AVAILABLE
+  IN_PROGRESS
+  COMPLETED
+  MASTERED
+}
+
+Enum module_kind {
+  LESSON
+  EXAMPLE
+  EXERCISE
+  CHALLENGE
+  COOP
+}
+
+Enum submission_source {
+  INLINE
+  GIT
+}
+
+Enum evaluation_status {
+  QUEUED
+  RUNNING
+  PASSED
+  FAILED
+  ERROR
+  CANCELLED
+}
+
+Enum project_kind {
+  SOLO
+  COOP
+  TIMED
+  HACKATHON
+  BLOCK_BOSS
+  DOMAIN_FINAL_BOSS
+}
+
+Enum team_status {
+  FORMING
+  ACTIVE
+  COMPLETED
+  DISBANDED
+}
+
+Enum team_member_role {
+  OWNER
+  MEMBER
+}
+
+Enum invitation_status {
+  PENDING
+  ACCEPTED
+  DECLINED
+  CANCELLED
+  EXPIRED
+}
+
+Enum review_status {
+  REQUESTED
+  IN_PROGRESS
+  CHANGES_REQUESTED
+  APPROVED
+  CANCELLED
+}
+
+Enum friendship_status {
+  PENDING
+  ACCEPTED
+  DECLINED
+  BLOCKED
+}
+
+Enum quest_kind {
+  LEARNING
+  PROJECT
+  COOP
+  PEER_REVIEW
+  GIT
+  TIMED
+  CHALLENGE
+  SECRET
+  EVENT
+  BOSS
+}
+
+Enum quest_progress_status {
+  LOCKED
+  AVAILABLE
+  IN_PROGRESS
+  COMPLETED
+  CLAIMED
+}
+
+Enum reward_kind {
+  XP
+  BADGE
+  COSMETIC
+}
+
+Enum cosmetic_rarity {
+  COMMON
+  UNCOMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+Enum cosmetic_category {
+  HAIR
+  HAT
+  GLASSES
+  HEADPHONES
+  TSHIRT
+  HOODIE
+  JACKET
+  ACCESSORY
+  BACKGROUND
+}
+
+Enum boss_attempt_status {
+  IN_PROGRESS
+  SUBMITTED
+  FAILED
+  COMPLETED
+}
+
+Enum notification_kind {
+  FRIEND_REQUEST
+  PROJECT_INVITE
+  REVIEW_REQUESTED
+  REVIEW_COMPLETED
+  QUEST_COMPLETED
+  ITEM_UNLOCKED
+  BOSS_UNLOCKED
+  BOSS_COMPLETED
+}
+
+Table users {
+  id uuid [pk]
+  username varchar(32) [not null, unique]
+  email varchar(320) [unique]
+  password_hash varchar(255)
+  status user_status [not null, default: 'PENDING']
+  email_verified_at timestamptz
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+  deleted_at timestamptz
+}
+
+Table auth_accounts {
+  id uuid [pk]
+  user_id uuid [not null, ref: > users.id]
+  provider varchar(50) [not null]
+  provider_account_id varchar(255) [not null]
+  created_at timestamptz [not null]
+
+  indexes {
+    (provider, provider_account_id) [unique]
+    user_id
+  }
+}
+
+Table profiles {
+  user_id uuid [pk, ref: > users.id]
+  username varchar(32) [not null, unique, note: 'Public username mirrored from users during V1']
+  display_name varchar(80) [not null]
+  bio varchar(500)
+  global_rank rank_code [not null, default: 'UNRANKED']
+  public_badge_limit smallint [not null, default: 3]
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Table sessions {
+  id uuid [pk]
+  user_id uuid [not null, ref: > users.id]
+  token_hash bytea [not null, unique]
+  user_agent_hash bytea
+  ip_address inet
+  created_at timestamptz [not null]
+  last_seen_at timestamptz [not null]
+  expires_at timestamptz [not null]
+  revoked_at timestamptz
+
+  indexes {
+    user_id
+    expires_at
+  }
+}
+
+Table authentication_events {
+  id bigint [pk, increment]
+  user_id uuid [ref: > users.id]
+  username_attempted varchar(32)
+  event_type varchar(40) [not null]
+  ip_address inet
+  occurred_at timestamptz [not null]
+}
+
+Table domains {
+  id uuid [pk]
+  slug varchar(80) [not null, unique]
+  name varchar(120) [not null]
+  description text
+  sort_order int [not null]
+  status content_status [not null, default: 'DRAFT']
+  content_version varchar(40) [not null]
+}
+
+Table blocks {
+  id uuid [pk]
+  domain_id uuid [not null, ref: > domains.id]
+  slug varchar(80) [not null]
+  name varchar(120) [not null]
+  description text
+  sort_order int [not null]
+  status content_status [not null, default: 'DRAFT']
+  content_version varchar(40) [not null]
+
+  indexes {
+    (domain_id, slug) [unique]
+    (domain_id, sort_order) [unique]
+  }
+}
+
+Table skills {
+  id uuid [pk]
+  block_id uuid [not null, ref: > blocks.id]
+  slug varchar(100) [not null]
+  name varchar(120) [not null]
+  description text
+  is_transversal boolean [not null, default: false]
+  sort_order int [not null]
+  status content_status [not null, default: 'DRAFT']
+  content_version varchar(40) [not null]
+
+  indexes {
+    (block_id, slug) [unique]
+    (block_id, sort_order) [unique]
+  }
+}
+
+Table skill_prerequisites {
+  skill_id uuid [not null, ref: > skills.id]
+  prerequisite_skill_id uuid [not null, ref: > skills.id]
+  minimum_rank rank_code [not null]
+
+  indexes {
+    (skill_id, prerequisite_skill_id) [pk]
+  }
+}
+
+Table skill_levels {
+  id uuid [pk]
+  skill_id uuid [not null, ref: > skills.id]
+  rank rank_code [not null]
+  title varchar(120) [not null]
+  description text
+  xp_required int [not null]
+  sort_order int [not null]
+  content_version varchar(40) [not null]
+
+  indexes {
+    (skill_id, rank) [unique]
+    (skill_id, sort_order) [unique]
+  }
+}
+
+Table learning_modules {
+  id uuid [pk]
+  skill_level_id uuid [not null, ref: > skill_levels.id]
+  slug varchar(120) [not null]
+  title varchar(160) [not null]
+  kind module_kind [not null]
+  sort_order int [not null]
+  is_required boolean [not null, default: true]
+  xp_reward int [not null, default: 0]
+  status content_status [not null, default: 'DRAFT']
+  content_ref varchar(255) [not null, note: 'Path or immutable key in the versioned content repository']
+  content_version varchar(40) [not null]
+
+  indexes {
+    (skill_level_id, slug) [unique]
+    (skill_level_id, sort_order) [unique]
+  }
+}
+
+Table exercises {
+  id uuid [pk]
+  module_id uuid [not null, unique, ref: > learning_modules.id]
+  language varchar(30) [not null]
+  entrypoint varchar(255)
+  starter_code_ref varchar(255)
+  test_bundle_ref varchar(255) [not null, note: 'Immutable evaluator bundle; hidden test contents never exposed by the API']
+  time_limit_ms int [not null]
+  memory_limit_mb int [not null]
+  max_attempts int
+  config jsonb [not null, note: 'Required files, signatures, allowed and forbidden features']
+}
+
+Table user_module_progress {
+  user_id uuid [not null, ref: > users.id]
+  module_id uuid [not null, ref: > learning_modules.id]
+  status progress_status [not null, default: 'LOCKED']
+  attempt_count int [not null, default: 0]
+  best_score numeric(5,2)
+  started_at timestamptz
+  completed_at timestamptz
+  updated_at timestamptz [not null]
+
+  indexes {
+    (user_id, module_id) [pk]
+    (user_id, status)
+  }
+}
+
+Table user_skill_progress {
+  user_id uuid [not null, ref: > users.id]
+  skill_id uuid [not null, ref: > skills.id]
+  rank rank_code [not null, default: 'UNRANKED']
+  xp_total bigint [not null, default: 0]
+  updated_at timestamptz [not null]
+
+  indexes {
+    (user_id, skill_id) [pk]
+    (user_id, rank)
+  }
+}
+
+Table user_block_progress {
+  user_id uuid [not null, ref: > users.id]
+  block_id uuid [not null, ref: > blocks.id]
+  rank rank_code [not null, default: 'UNRANKED']
+  boss_completed_at timestamptz
+  updated_at timestamptz [not null]
+
+  indexes {
+    (user_id, block_id) [pk]
+  }
+}
+
+Table user_domain_progress {
+  user_id uuid [not null, ref: > users.id]
+  domain_id uuid [not null, ref: > domains.id]
+  rank rank_code [not null, default: 'UNRANKED']
+  final_boss_completed_at timestamptz
+  updated_at timestamptz [not null]
+
+  indexes {
+    (user_id, domain_id) [pk]
+  }
+}
+
+Table xp_transactions {
+  id uuid [pk]
+  user_id uuid [not null, ref: > users.id]
+  skill_id uuid [ref: > skills.id]
+  amount int [not null]
+  reason varchar(60) [not null]
+  source_type varchar(50) [not null]
+  source_id uuid [not null]
+  idempotency_key varchar(160) [not null, unique]
+  metadata jsonb
+  created_at timestamptz [not null]
+
+  indexes {
+    (user_id, created_at)
+    (source_type, source_id)
+  }
+}
+
+Table projects {
+  id uuid [pk]
+  domain_id uuid [ref: > domains.id]
+  block_id uuid [ref: > blocks.id]
+  slug varchar(120) [not null, unique]
+  title varchar(160) [not null]
+  description text
+  kind project_kind [not null]
+  minimum_git_rank rank_code
+  duration_minutes int
+  status content_status [not null, default: 'DRAFT']
+  project_bundle_ref varchar(255) [not null]
+  content_version varchar(40) [not null]
+}
+
+Table project_objectives {
+  id uuid [pk]
+  project_id uuid [not null, ref: > projects.id]
+  code varchar(80) [not null]
+  title varchar(160) [not null]
+  is_required boolean [not null, default: true]
+  sort_order int [not null]
+
+  indexes {
+    (project_id, code) [unique]
+  }
+}
+
+Table project_skills {
+  project_id uuid [not null, ref: > projects.id]
+  skill_id uuid [not null, ref: > skills.id]
+  xp_reward int [not null]
+
+  indexes {
+    (project_id, skill_id) [pk]
+  }
+}
+
+Table teams {
+  id uuid [pk]
+  project_id uuid [not null, ref: > projects.id]
+  name varchar(80) [not null]
+  status team_status [not null, default: 'FORMING']
+  created_at timestamptz [not null]
+  completed_at timestamptz
+}
+
+Table team_members {
+  team_id uuid [not null, ref: > teams.id]
+  user_id uuid [not null, ref: > users.id]
+  role team_member_role [not null, default: 'MEMBER']
+  joined_at timestamptz [not null]
+  left_at timestamptz
+
+  indexes {
+    (team_id, user_id) [pk]
+    user_id
+  }
+}
+
+Table team_invitations {
+  id uuid [pk]
+  team_id uuid [not null, ref: > teams.id]
+  invited_user_id uuid [not null, ref: > users.id]
+  invited_by_user_id uuid [not null, ref: > users.id]
+  status invitation_status [not null, default: 'PENDING']
+  expires_at timestamptz [not null]
+  created_at timestamptz [not null]
+  responded_at timestamptz
+
+  indexes {
+    (team_id, invited_user_id)
+  }
+}
+
+Table submissions {
+  id uuid [pk]
+  user_id uuid [not null, ref: > users.id]
+  exercise_id uuid [ref: > exercises.id]
+  project_id uuid [ref: > projects.id]
+  team_id uuid [ref: > teams.id]
+  boss_attempt_id uuid [ref: > boss_attempts.id]
+  source_type submission_source [not null]
+  language varchar(30) [not null]
+  source_code text [note: 'Present only for INLINE submissions']
+  repository_url varchar(500)
+  branch varchar(255)
+  commit_sha varchar(64)
+  status evaluation_status [not null, default: 'QUEUED']
+  content_version varchar(40) [not null, note: 'Version of the evaluated exercise/project/boss']
+  created_at timestamptz [not null]
+  started_at timestamptz
+  finished_at timestamptz
+
+  indexes {
+    (user_id, created_at)
+    (status, created_at)
+    exercise_id
+    project_id
+  }
+}
+
+Table evaluations {
+  id uuid [pk]
+  submission_id uuid [not null, unique, ref: > submissions.id]
+  worker_job_id varchar(120) [unique]
+  constraint_passed boolean
+  compile_passed boolean
+  tests_passed boolean
+  memory_passed boolean
+  performance_passed boolean
+  execution_time_ms int
+  memory_used_mb numeric(10,2)
+  score numeric(5,2)
+  failure_category varchar(60)
+  error_message text
+  result_payload jsonb
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Table test_results {
+  id uuid [pk]
+  evaluation_id uuid [not null, ref: > evaluations.id]
+  test_key varchar(120) [not null]
+  passed boolean [not null]
+  visible boolean [not null]
+  execution_time_ms int
+  memory_used_mb numeric(10,2)
+  feedback_category varchar(60)
+  public_feedback text
+
+  indexes {
+    (evaluation_id, test_key) [unique]
+  }
+}
+
+Table friendships {
+  id uuid [pk]
+  requester_id uuid [not null, ref: > users.id]
+  addressee_id uuid [not null, ref: > users.id]
+  status friendship_status [not null, default: 'PENDING']
+  created_at timestamptz [not null]
+  responded_at timestamptz
+
+  indexes {
+    (requester_id, addressee_id) [unique]
+    (addressee_id, status)
+  }
+}
+
+Table peer_reviews {
+  id uuid [pk]
+  submission_id uuid [not null, ref: > submissions.id]
+  author_id uuid [not null, ref: > users.id]
+  reviewer_id uuid [not null, ref: > users.id]
+  status review_status [not null, default: 'REQUESTED']
+  requested_at timestamptz [not null]
+  completed_at timestamptz
+
+  indexes {
+    (submission_id, reviewer_id) [unique]
+    (reviewer_id, status)
+  }
+}
+
+Table review_comments {
+  id uuid [pk]
+  review_id uuid [not null, ref: > peer_reviews.id]
+  author_id uuid [not null, ref: > users.id]
+  body text [not null]
+  file_path varchar(500)
+  line_number int
+  created_at timestamptz [not null]
+  updated_at timestamptz [not null]
+}
+
+Table quests {
+  id uuid [pk]
+  slug varchar(120) [not null, unique]
+  title varchar(160) [not null]
+  description text
+  kind quest_kind [not null]
+  is_repeatable boolean [not null, default: false]
+  requirements jsonb [not null]
+  starts_at timestamptz
+  ends_at timestamptz
+  status content_status [not null, default: 'DRAFT']
+  content_version varchar(40) [not null]
+}
+
+Table quest_rewards {
+  id uuid [pk]
+  quest_id uuid [not null, ref: > quests.id]
+  kind reward_kind [not null]
+  amount int
+  badge_id uuid [ref: > badges.id]
+  cosmetic_id uuid [ref: > cosmetics.id]
+}
+
+Table user_quest_progress {
+  user_id uuid [not null, ref: > users.id]
+  quest_id uuid [not null, ref: > quests.id]
+  status quest_progress_status [not null, default: 'LOCKED']
+  progress jsonb [not null]
+  started_at timestamptz
+  completed_at timestamptz
+  claimed_at timestamptz
+
+  indexes {
+    (user_id, quest_id) [pk]
+    (user_id, status)
+  }
+}
+
+Table badges {
+  id uuid [pk]
+  slug varchar(100) [not null, unique]
+  name varchar(120) [not null]
+  description text
+  asset_ref varchar(255) [not null]
+}
+
+Table user_badges {
+  user_id uuid [not null, ref: > users.id]
+  badge_id uuid [not null, ref: > badges.id]
+  earned_at timestamptz [not null]
+  display_order smallint
+
+  indexes {
+    (user_id, badge_id) [pk]
+    (user_id, display_order) [unique]
+  }
+}
+
+Table cosmetics {
+  id uuid [pk]
+  slug varchar(100) [not null, unique]
+  name varchar(120) [not null]
+  category cosmetic_category [not null]
+  rarity cosmetic_rarity [not null]
+  asset_ref varchar(255) [not null]
+  status content_status [not null, default: 'DRAFT']
+}
+
+Table user_cosmetics {
+  user_id uuid [not null, ref: > users.id]
+  cosmetic_id uuid [not null, ref: > cosmetics.id]
+  unlocked_at timestamptz [not null]
+  source_type varchar(50) [not null]
+  source_id uuid [not null]
+
+  indexes {
+    (user_id, cosmetic_id) [pk]
+  }
+}
+
+Table avatars {
+  user_id uuid [pk, ref: > users.id]
+  body_type varchar(30) [not null]
+  skin_tone smallint [not null]
+  updated_at timestamptz [not null]
+}
+
+Table avatar_items {
+  user_id uuid [not null, ref: > avatars.user_id]
+  category cosmetic_category [not null]
+  cosmetic_id uuid [not null, ref: > cosmetics.id]
+
+  indexes {
+    (user_id, category) [pk]
+  }
+}
+
+Table bosses {
+  id uuid [pk]
+  block_id uuid [ref: > blocks.id]
+  domain_id uuid [ref: > domains.id]
+  slug varchar(120) [not null, unique]
+  title varchar(160) [not null]
+  description text
+  project_id uuid [not null, unique, ref: > projects.id]
+  status content_status [not null, default: 'DRAFT']
+  content_version varchar(40) [not null]
+}
+
+Table boss_gates {
+  id uuid [pk]
+  boss_id uuid [not null, ref: > bosses.id]
+  code varchar(80) [not null]
+  name varchar(120) [not null]
+  sort_order int [not null]
+  is_required boolean [not null, default: true]
+  config jsonb [not null]
+
+  indexes {
+    (boss_id, code) [unique]
+  }
+}
+
+Table boss_attempts {
+  id uuid [pk]
+  boss_id uuid [not null, ref: > bosses.id]
+  user_id uuid [not null, ref: > users.id]
+  status boss_attempt_status [not null, default: 'IN_PROGRESS']
+  attempt_number int [not null]
+  started_at timestamptz [not null]
+  submitted_at timestamptz
+  completed_at timestamptz
+
+  indexes {
+    (boss_id, user_id, attempt_number) [unique]
+    (user_id, status)
+  }
+}
+
+Table boss_gate_results {
+  attempt_id uuid [not null, ref: > boss_attempts.id]
+  gate_id uuid [not null, ref: > boss_gates.id]
+  passed boolean [not null]
+  result_payload jsonb
+  evaluated_at timestamptz [not null]
+
+  indexes {
+    (attempt_id, gate_id) [pk]
+  }
+}
+
+Table notifications {
+  id uuid [pk]
+  user_id uuid [not null, ref: > users.id]
+  kind notification_kind [not null]
+  payload jsonb [not null]
+  read_at timestamptz
+  created_at timestamptz [not null]
+
+  indexes {
+    (user_id, read_at, created_at)
+  }
+}
+
+Table audit_events {
+  id uuid [pk]
+  actor_user_id uuid [ref: > users.id]
+  action varchar(100) [not null]
+  entity_type varchar(80) [not null]
+  entity_id uuid
+  payload jsonb
+  occurred_at timestamptz [not null]
+
+  indexes {
+    (entity_type, entity_id, occurred_at)
+    (actor_user_id, occurred_at)
+  }
+}
