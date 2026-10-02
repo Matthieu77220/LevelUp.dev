@@ -7,7 +7,7 @@ BEGIN
       FROM (VALUES
         ('identity.users'), ('identity.profiles'), ('identity.sessions'),
         ('identity.authentication_events'),
-        ('learning.domains'), ('learning.skills'), ('learning.exercises'),
+        ('learning.domains'), ('learning.blocks'), ('learning.skills'), ('learning.exercises'),
         ('progression.xp_transactions'), ('progression.user_skill_progress'),
         ('evaluation.submissions'), ('evaluation.evaluations'),
         ('social.teams'), ('social.peer_reviews'),
@@ -21,6 +21,10 @@ BEGIN
 
     IF NOT EXISTS (SELECT 1 FROM app_private.schema_migrations WHERE version = '0003_data_integrity') THEN
         RAISE EXCEPTION 'Migration 0003_data_integrity is required';
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM app_private.schema_migrations WHERE version = '0004_learning_catalog') THEN
+        RAISE EXCEPTION 'Migration 0004_learning_catalog is required';
     END IF;
 
     SELECT array_agg(expected.name) INTO missing

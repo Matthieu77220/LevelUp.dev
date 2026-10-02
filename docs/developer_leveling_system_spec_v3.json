@@ -1,0 +1,1598 @@
+{
+  "project": {
+    "name": "Developer Leveling System",
+    "version": "V1 Spec v3",
+    "tagline": "Learn. Build. Review. Conquer.",
+    "vision": "Plateforme d'apprentissage de l'informatique gamifiée reposant sur une progression inspirée des RPG. La progression doit refléter autant que possible une capacité réelle à comprendre, coder, construire, collaborer et résoudre des problèmes techniques.",
+    "pillars": {
+      "learning": [
+        "modules",
+        "exercises"
+      ],
+      "progression": [
+        "xp",
+        "levels",
+        "ranks",
+        "skill_tree"
+      ],
+      "practice": [
+        "challenges",
+        "projects",
+        "bosses"
+      ],
+      "social": [
+        "friends",
+        "teams",
+        "peer_review"
+      ],
+      "gamification": [
+        "quests",
+        "badges",
+        "avatar",
+        "cosmetics"
+      ]
+    },
+    "last_updated": "2026-09-30",
+    "spec_notes": [
+      "E = débutant absolu",
+      "Git devient obligatoire progressivement",
+      "Correction sans IA payante",
+      "Soumissions inline puis Git par commit SHA",
+      "Sandbox obligatoire",
+      "Feedback décroissant avec le rang",
+      "Boss finaux : Enterprise Core et ATLAS",
+      "Statistiques publiques de déblocage, tentative et réussite"
+    ]
+  },
+  "core_principles": {
+    "practice_over_theory": true,
+    "technical_progression_separate_from_cosmetics": true,
+    "ranks_represent_technical_progression": true,
+    "quests_drive_cosmetic_rewards": true,
+    "cosmetics_are_visual_only": true,
+    "paid_ai_required": false,
+    "validation_methods": [
+      "unit_tests",
+      "functional_tests",
+      "hidden_tests",
+      "static_rules",
+      "checklists",
+      "peer_review"
+    ]
+  },
+  "progression": {
+    "rank_scale": [
+      "UNRANKED",
+      "E",
+      "D",
+      "C",
+      "B",
+      "A",
+      "S"
+    ],
+    "hierarchy": [
+      "user",
+      "global_rank",
+      "domain",
+      "block",
+      "skill",
+      "level",
+      "module",
+      "exercise",
+      "project",
+      "block_boss",
+      "domain_final_boss"
+    ],
+    "technical_loop": [
+      "modules",
+      "exercises",
+      "projects",
+      "xp",
+      "ranks",
+      "bosses",
+      "mastery"
+    ],
+    "cosmetic_loop": [
+      "quests",
+      "achievements",
+      "badges",
+      "cosmetics",
+      "profile_customization"
+    ],
+    "global_rank": {
+      "based_on": [
+        "domain_ranks",
+        "skill_ranks",
+        "completed_projects",
+        "skill_diversity",
+        "specific_requirements"
+      ],
+      "not_based_only_on_total_xp": true
+    },
+    "xp_history_required": true,
+    "rank_semantics": {
+      "UNRANKED": {
+        "label": "Non classé",
+        "meaning": "Compétence non commencée."
+      },
+      "E": {
+        "label": "Débutant absolu",
+        "meaning": "Point d'entrée pour une personne n'ayant jamais utilisé la compétence. Aucun prérequis implicite."
+      },
+      "D": {
+        "label": "Bases acquises",
+        "meaning": "Fondamentaux compris et exercices simples réalisables."
+      },
+      "C": {
+        "label": "Autonome",
+        "meaning": "Utilisation autonome sur des cas courants."
+      },
+      "B": {
+        "label": "Avancé",
+        "meaning": "Capable de traiter des projets et problèmes complexes."
+      },
+      "A": {
+        "label": "Très avancé",
+        "meaning": "Maîtrise poussée, architecture, optimisation et cas difficiles."
+      },
+      "S": {
+        "label": "Maîtrise",
+        "meaning": "Maîtrise avancée de la compétence. Les Boss servent à prouver l'intégration de plusieurs compétences."
+      }
+    }
+  },
+  "domains": {
+    "web": {
+      "status": "active_v1",
+      "blocks": {
+        "frontend": {
+          "skills": [
+            "html",
+            "css",
+            "javascript",
+            "typescript",
+            "browser_javascript",
+            "react",
+            "react_typescript"
+          ],
+          "boss": {
+            "name": "Command Center",
+            "unlock_condition": "all_block_skills_rank_S",
+            "mode": "solo",
+            "difficulty": "extreme",
+            "focus": [
+              "react",
+              "typescript_strict",
+              "routing",
+              "state_management",
+              "api_integration",
+              "responsive",
+              "accessibility",
+              "error_states",
+              "testing",
+              "complex_ui"
+            ],
+            "reward_status": "FRONT-END MASTER"
+          }
+        },
+        "backend": {
+          "skills": [
+            "nodejs",
+            "nodejs_typescript",
+            "python",
+            "go",
+            "rest_api",
+            "authentication",
+            "backend_architecture"
+          ],
+          "boss": {
+            "name": "Nexus API",
+            "unlock_condition": "all_block_skills_rank_S",
+            "mode": "solo",
+            "difficulty": "extreme",
+            "focus": [
+              "authentication",
+              "permissions",
+              "rest_api",
+              "validation",
+              "rate_limiting",
+              "logging",
+              "websocket",
+              "testing",
+              "api_documentation"
+            ],
+            "reward_status": "BACK-END MASTER"
+          }
+        },
+        "database": {
+          "skills": [
+            "database_fundamentals",
+            "mysql",
+            "postgresql",
+            "mongodb"
+          ],
+          "boss": {
+            "name": "Data Architect",
+            "unlock_condition": "all_block_skills_rank_S",
+            "mode": "solo",
+            "difficulty": "extreme",
+            "focus": [
+              "schema_design",
+              "relations",
+              "constraints",
+              "indexes",
+              "transactions",
+              "migrations",
+              "query_optimization",
+              "concurrency"
+            ],
+            "reward_status": "DATABASE MASTER"
+          }
+        },
+        "tooling": {
+          "skills": [
+            "git"
+          ],
+          "future_skills": [
+            "github",
+            "testing",
+            "docker",
+            "cicd"
+          ]
+        }
+      },
+      "final_boss": {
+        "id": "enterprise_core",
+        "name": "Enterprise Core",
+        "type": "DOMAIN_FINAL_BOSS",
+        "unlock_condition": "all_web_block_bosses_completed",
+        "mode": "solo",
+        "difficulty": "extreme",
+        "description": "Construire une intranet complète pour une grande entreprise internationale, avec architecture, sécurité, permissions complexes, front, back, base de données, temps réel, recherche, administration, audit, tests, performance et déploiement.",
+        "allowed_technologies": {
+          "frontend": [
+            "react",
+            "react_typescript"
+          ],
+          "backend": [
+            "nodejs",
+            "nodejs_typescript",
+            "python",
+            "go"
+          ],
+          "database": [
+            "postgresql",
+            "mysql",
+            "mongodb"
+          ]
+        },
+        "organization_model": [
+          "company",
+          "countries",
+          "sites",
+          "directions",
+          "departments",
+          "teams",
+          "employees"
+        ],
+        "mandatory_modules": [
+          "authentication",
+          "user_profiles",
+          "enterprise_directory",
+          "organization_chart",
+          "internal_news",
+          "document_management",
+          "internal_social_feed",
+          "messaging",
+          "project_management",
+          "tasks",
+          "request_workflows",
+          "hr_features",
+          "it_ticketing",
+          "resource_reservations",
+          "calendar",
+          "notifications",
+          "global_search",
+          "administration",
+          "audit_logs"
+        ],
+        "roles_example": [
+          "employee",
+          "manager",
+          "department_manager",
+          "hr",
+          "it_support",
+          "communication",
+          "local_admin",
+          "global_admin"
+        ],
+        "requirements": {
+          "contextual_permissions": true,
+          "advanced_workflows": true,
+          "database_expected_scale": "30_to_50_plus_tables",
+          "desktop_first_allowed": true,
+          "responsive_required": true,
+          "accessibility_required": true,
+          "security_required": true,
+          "deployment_required": true
+        },
+        "load_test_dataset_examples": {
+          "employees": 10000,
+          "teams": 500,
+          "messages": 100000,
+          "notifications": 250000,
+          "audit_entries": 1000000
+        },
+        "validation_gates": [
+          "build",
+          "functional",
+          "auth",
+          "permissions",
+          "database",
+          "security",
+          "performance",
+          "accessibility",
+          "responsive",
+          "tests",
+          "deployment",
+          "documentation"
+        ],
+        "all_required_gates_must_pass": true,
+        "mastery_reward": {
+          "status": "WEB DOMAIN MASTER",
+          "title": "WEB ARCHITECT",
+          "badge": "WEB CONQUEROR",
+          "profile_frame": "WEB MASTER",
+          "exclusive_cosmetics": true
+        },
+        "summary": "Construire seul une intranet d'entreprise de niveau professionnel destinée à une grande organisation, avec front, back, base de données, sécurité, permissions, workflows, temps réel, recherche, administration, audit, tests, performance, accessibilité et déploiement.",
+        "complexity_target": {
+          "application_type": "large_enterprise_intranet",
+          "expected_database_scale": "30_to_50_plus_tables",
+          "expected_functional_modules": "15_plus",
+          "goal": "Projet volontairement exceptionnellement difficile."
+        }
+      }
+    },
+    "logic_algorithms": {
+      "status": "active_v1",
+      "languages": {
+        "standard_progression": [
+          "c",
+          "cpp",
+          "python"
+        ],
+        "final_boss": [
+          "c",
+          "cpp"
+        ]
+      },
+      "blocks": [
+        "fundamentals",
+        "strings_arrays",
+        "memory",
+        "data_structures",
+        "sorting_searching",
+        "recursion",
+        "graphs",
+        "optimization",
+        "parsing"
+      ],
+      "exercise_style": {
+        "inspiration": "42_like",
+        "examples": [
+          "strlen",
+          "strcpy",
+          "strcmp",
+          "atoi",
+          "strdup",
+          "split",
+          "sort",
+          "range",
+          "join"
+        ],
+        "supports_allowed_functions": true,
+        "supports_forbidden_functions": true,
+        "supports_time_limit": true,
+        "supports_memory_limit": true,
+        "supports_visible_tests": true,
+        "supports_hidden_tests": true
+      },
+      "bosses": [
+        "memory_boss",
+        "graph_boss",
+        "sorting_boss",
+        "parsing_boss",
+        "data_structure_boss"
+      ],
+      "final_boss": {
+        "id": "atlas",
+        "name": "ATLAS",
+        "type": "DOMAIN_FINAL_BOSS",
+        "unlock_condition": "all_algo_block_bosses_completed",
+        "mode": "solo",
+        "difficulty": "extreme",
+        "allowed_languages": [
+          "c",
+          "cpp"
+        ],
+        "python_forbidden": true,
+        "description": "Construire un moteur d'optimisation logistique à grande échelle capable de parser, indexer, analyser et optimiser un réseau dynamique sous contraintes de temps, mémoire et complexité.",
+        "domain_objects": [
+          "cities",
+          "roads",
+          "distances",
+          "costs",
+          "travel_times",
+          "vehicles",
+          "warehouses",
+          "deliveries",
+          "capacity",
+          "deadlines",
+          "blocked_routes",
+          "dynamic_updates"
+        ],
+        "input_files": [
+          "network.atlas",
+          "vehicles.atlas",
+          "deliveries.atlas",
+          "commands.atlas"
+        ],
+        "required_data_structures": [
+          "dynamic_array",
+          "linked_list",
+          "stack",
+          "queue",
+          "deque",
+          "hash_table",
+          "heap",
+          "graph",
+          "tree",
+          "union_find",
+          "bitset"
+        ],
+        "algorithm_families": [
+          "bfs",
+          "dfs",
+          "dijkstra",
+          "a_star",
+          "kruskal",
+          "prim",
+          "topological_sort",
+          "sorting",
+          "searching",
+          "greedy",
+          "scheduling"
+        ],
+        "required_capabilities": [
+          "robust_parsing",
+          "dynamic_graph_updates",
+          "shortest_path",
+          "fastest_path",
+          "cheapest_path",
+          "alternative_routes",
+          "connected_components",
+          "critical_nodes",
+          "minimum_spanning_tree",
+          "delivery_assignment",
+          "scheduling",
+          "indexing",
+          "massive_sorting",
+          "cache",
+          "persistence",
+          "benchmark_command"
+        ],
+        "c_restrictions_example": [
+          "read",
+          "write",
+          "open",
+          "close",
+          "malloc",
+          "free"
+        ],
+        "cpp_rules": {
+          "allowed": [
+            "raii",
+            "classes",
+            "templates",
+            "std_string"
+          ],
+          "stl_may_be_restricted_when_it_bypasses_learning_objective": true
+        },
+        "performance_examples": {
+          "dataset_size": "4GB",
+          "memory_limit": "512MB"
+        },
+        "memory_requirements": [
+          "0_memory_leak",
+          "0_invalid_read",
+          "0_invalid_write",
+          "0_double_free"
+        ],
+        "validation_tools_examples": [
+          "AddressSanitizer",
+          "Valgrind"
+        ],
+        "validation_gates": [
+          "compilation",
+          "restrictions",
+          "functional_correctness",
+          "parsing",
+          "data_structures",
+          "graph_algorithms",
+          "optimization",
+          "performance",
+          "memory_safety",
+          "extreme_datasets"
+        ],
+        "all_required_gates_must_pass": true,
+        "mastery_reward": {
+          "status": "LOGIC & ALGORITHMS DOMAIN MASTER",
+          "title": "ALGORITHM ARCHITECT",
+          "badge": "ATLAS CONQUEROR",
+          "profile_frame": "ALGORITHM MASTER",
+          "exclusive_cosmetics": true
+        },
+        "secret_achievement": {
+          "name": "ATLAS — DUAL CORE",
+          "condition": "complete_atlas_in_c_and_cpp",
+          "rewards": [
+            "secret_badge",
+            "exclusive_cosmetic"
+          ]
+        },
+        "summary": "Construire seul en C ou C++ un moteur d'optimisation logistique à grande échelle, avec parsing, structures de données, graphes, tri, recherche, scheduling, cache, persistance, optimisation mémoire et performance sur des datasets extrêmes.",
+        "complexity_target": {
+          "application_type": "large_scale_algorithmic_engine",
+          "language": "C_or_C++_only",
+          "python_forbidden": true,
+          "goal": "Projet volontairement exceptionnellement difficile."
+        }
+      }
+    }
+  },
+  "skills": {
+    "javascript": {
+      "common_fundamentals": [
+        "variables",
+        "types",
+        "conditions",
+        "loops",
+        "functions",
+        "arrays",
+        "objects",
+        "modules",
+        "async_await",
+        "errors"
+      ],
+      "frontend_specialization": [
+        "dom",
+        "events",
+        "fetch",
+        "storage",
+        "forms",
+        "browser_apis"
+      ],
+      "backend_specialization": [
+        "node_runtime",
+        "npm",
+        "filesystem",
+        "process_env",
+        "http_server",
+        "rest_api",
+        "middleware",
+        "backend_architecture"
+      ]
+    },
+    "typescript": {
+      "common_fundamentals": [
+        "primitive_types",
+        "interfaces",
+        "unions",
+        "generics",
+        "narrowing",
+        "utility_types",
+        "tsconfig"
+      ],
+      "frontend_specialization": [
+        "typed_dom",
+        "typed_events",
+        "typed_fetch",
+        "react_typescript"
+      ],
+      "backend_specialization": [
+        "node_typescript",
+        "dto",
+        "api_typing",
+        "validation",
+        "typed_backend_architecture"
+      ]
+    },
+    "database_fundamentals": [
+      "crud",
+      "tables_documents",
+      "keys",
+      "relations",
+      "indexes",
+      "normalization",
+      "transactions"
+    ],
+    "web": {
+      "tooling": {
+        "git": {
+          "ranked": true,
+          "transversal": true,
+          "entry_rank": "E",
+          "beginner_friendly": true,
+          "mandatory_progressively": true,
+          "used_across_domains": [
+            "web",
+            "logic_algorithms"
+          ]
+        }
+      }
+    }
+  },
+  "levels_and_modules": {
+    "level_structure": [
+      "lesson",
+      "example",
+      "exercise",
+      "challenge",
+      "optional_coop_module"
+    ],
+    "reading_xp": "low_or_zero",
+    "practice_xp": "higher",
+    "cooperative_modules_optional": true,
+    "beginner_calibration": {
+      "rank_E_assumes_zero_prior_knowledge": true,
+      "no_implicit_tooling_knowledge": true,
+      "examples": {
+        "javascript_E": [
+          "Qu'est-ce que JavaScript ?",
+          "Variables",
+          "Types",
+          "Opérateurs",
+          "Conditions",
+          "Boucles",
+          "Fonctions simples",
+          "Tableaux simples",
+          "Objets simples"
+        ],
+        "c_E": [
+          "Compilation",
+          "main",
+          "Variables",
+          "Types",
+          "Conditions",
+          "Boucles",
+          "Fonctions",
+          "Introduction aux pointeurs",
+          "Tableaux",
+          "Chaînes"
+        ],
+        "git_E": [
+          "Pourquoi Git existe ?",
+          "Repository",
+          "git init",
+          "git status",
+          "git add",
+          "git commit",
+          "git log",
+          ".gitignore"
+        ]
+      }
+    }
+  },
+  "exercise_engine": {
+    "paid_ai_required": false,
+    "supports": [
+      "visible_tests",
+      "hidden_tests",
+      "allowed_functions",
+      "forbidden_functions",
+      "time_limit",
+      "memory_limit",
+      "language_specific_starter_code"
+    ],
+    "submission_pipeline": [
+      "submit_code",
+      "static_rule_check",
+      "sandbox_execution",
+      "compile_if_needed",
+      "run_tests",
+      "return_result"
+    ],
+    "sandbox_requirements": [
+      "cpu_limit",
+      "memory_limit",
+      "execution_timeout",
+      "no_main_server_access",
+      "network_disabled_by_default",
+      "temporary_environment"
+    ]
+  },
+  "projects": {
+    "types": [
+      "SOLO",
+      "COOP",
+      "TIMED",
+      "HACKATHON",
+      "BLOCK_BOSS",
+      "DOMAIN_FINAL_BOSS"
+    ],
+    "supports_mandatory_objectives": true,
+    "supports_bonus_objectives": true,
+    "supports_multi_skill_xp": true,
+    "coop": {
+      "min_players": 2,
+      "recommended_team_sizes": [
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "can_start_under_recommended_size": true,
+      "roles_are_recommended_not_mandatory": true,
+      "individual_contribution_should_influence_xp": true
+    },
+    "timed": {
+      "supported_examples_hours": [
+        6,
+        12,
+        24,
+        48,
+        72
+      ],
+      "lock_submission_on_expiry": true
+    },
+    "hackathon": {
+      "subject_can_be_hidden_until_start": true
+    },
+    "git_requirements": {
+      "beginner_exercises": "NONE",
+      "beginner_projects": "OPTIONAL",
+      "advanced_projects": "E",
+      "coop_projects": "D",
+      "advanced_peer_review": "C",
+      "domain_final_bosses": "C_OR_HIGHER"
+    }
+  },
+  "social": {
+    "friends": [
+      "search_user",
+      "send_request",
+      "accept_request",
+      "reject_request",
+      "remove_friend",
+      "view_profile",
+      "compare_profiles",
+      "invite_to_module",
+      "invite_to_project"
+    ],
+    "peer_review": {
+      "v1_team_size": 2,
+      "workflow": [
+        "author_submit",
+        "reviewer_review",
+        "comments",
+        "changes_requested_or_approve",
+        "author_update",
+        "reviewer_approve",
+        "automated_tests_unlocked",
+        "validation"
+      ],
+      "review_categories": [
+        "readability",
+        "naming",
+        "structure",
+        "duplication",
+        "error_handling",
+        "logic"
+      ],
+      "reviewer_does_not_validate_technical_correctness": true,
+      "reviewer_only_unlocks_automated_tests": true,
+      "reviewer_xp_enabled": true,
+      "anti_farming_required": true,
+      "git_integration": {
+        "basic_peer_review_can_exist_before_git_c": true,
+        "advanced_pr_review_requires_git_rank": "C",
+        "coop_project_requires_git_rank": "D",
+        "preferred_workflow": [
+          "branch",
+          "pull_request",
+          "review",
+          "changes_requested_or_approve",
+          "merge",
+          "automated_tests"
+        ]
+      }
+    }
+  },
+  "quests": {
+    "independent_from_rank": true,
+    "types": [
+      "LEARNING",
+      "PROJECT",
+      "COOP",
+      "PEER_REVIEW",
+      "GIT",
+      "TIMED",
+      "CHALLENGE",
+      "SECRET",
+      "EVENT",
+      "BOSS"
+    ],
+    "rewards": [
+      "small_xp",
+      "badge",
+      "top",
+      "accessory",
+      "hair",
+      "background",
+      "profile_cosmetic"
+    ],
+    "secret_quests_supported": true,
+    "repeatable_quests_supported": true,
+    "v1_preference": "mostly_unique_quests"
+  },
+  "avatar_and_cosmetics": {
+    "avatar_bases": [
+      "masculine",
+      "feminine"
+    ],
+    "skin_tones_v1": 5,
+    "layers": [
+      "background",
+      "body",
+      "skin",
+      "hair",
+      "clothing",
+      "accessory"
+    ],
+    "asset_formats": [
+      "svg",
+      "transparent_png"
+    ],
+    "cosmetic_categories": [
+      "hair",
+      "hat",
+      "glasses",
+      "headphones",
+      "tshirt",
+      "hoodie",
+      "jacket",
+      "accessory",
+      "background"
+    ],
+    "cosmetic_rarity": [
+      "COMMON",
+      "RARE",
+      "EPIC",
+      "LEGENDARY",
+      "SECRET"
+    ],
+    "cosmetics_give_stats": false,
+    "public_badges_limit": 3
+  },
+  "boss_system": {
+    "block_boss_unlock": "all_skills_in_block_rank_S",
+    "block_master_after_boss_completion": true,
+    "domain_final_boss_unlock": "all_block_bosses_completed",
+    "domain_master_after_final_boss_completion": true,
+    "all_required_gates_must_pass": true,
+    "supports_multiple_attempts": true,
+    "attempt_statuses": [
+      "IN_PROGRESS",
+      "SUBMITTED",
+      "FAILED",
+      "COMPLETED"
+    ],
+    "difficulty_philosophy": {
+      "standard_content": "progressively_accessible",
+      "block_bosses": "hard",
+      "domain_final_bosses": "exceptionally_hard",
+      "not_every_user_expected_to_finish": true
+    }
+  },
+  "boss_statistics": {
+    "enabled": true,
+    "public_on_boss_pages": true,
+    "metrics": [
+      "unlock_rate",
+      "attempt_rate",
+      "completion_rate"
+    ],
+    "optional_metrics": [
+      "average_attempts",
+      "median_completion_time"
+    ],
+    "definitions": {
+      "unlock_rate": "users_who_unlocked / users_eligible_for_domain",
+      "attempt_rate": "users_who_started / users_who_unlocked",
+      "completion_rate": "users_who_completed / users_who_started"
+    },
+    "values_are_dynamic": true,
+    "example_only": {
+      "enterprise_core": {
+        "unlocked_percent": 1.8,
+        "attempted_percent": 1.2,
+        "completed_percent": 0.3
+      },
+      "atlas": {
+        "unlocked_percent": 1.1,
+        "attempted_percent": 0.7,
+        "completed_percent": 0.1
+      }
+    },
+    "display_example": {
+      "fields": [
+        "unlocked_percent",
+        "attempted_percent",
+        "completed_percent"
+      ],
+      "purpose": "Matérialiser la rareté et le prestige des Boss."
+    }
+  },
+  "profile": {
+    "display": [
+      "avatar",
+      "username",
+      "global_level",
+      "global_rank",
+      "domain_ranks",
+      "skill_ranks",
+      "domain_mastery",
+      "selected_badges",
+      "projects_completed",
+      "bosses_completed",
+      "quests_completed"
+    ],
+    "domain_master_display_prominent": true
+  },
+  "ui_direction": {
+    "goal": "feel_like_a_game_system",
+    "style": [
+      "dark_navy_black",
+      "icy_blue_glow",
+      "subtle_purple_accents",
+      "holographic_panels",
+      "rpg_system_hud",
+      "premium_game_ui"
+    ],
+    "avoid_direct_copy_of_existing_franchise": true,
+    "home_sections": [
+      "avatar",
+      "global_rank",
+      "global_level",
+      "xp",
+      "domain_ranks",
+      "active_objectives",
+      "active_quests",
+      "boss_status",
+      "recent_rewards",
+      "notifications"
+    ],
+    "skill_tree_states": [
+      "LOCKED",
+      "AVAILABLE",
+      "IN_PROGRESS",
+      "RANK_S",
+      "MASTERED",
+      "BOSS_AVAILABLE"
+    ]
+  },
+  "notifications": [
+    "friend_request",
+    "project_invite",
+    "review_requested",
+    "review_completed",
+    "quest_completed",
+    "item_unlocked",
+    "boss_unlocked",
+    "boss_completed"
+  ],
+  "technical_stack": {
+    "frontend": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "backend_v1": [
+      "Next.js Route Handlers",
+      "Server Actions"
+    ],
+    "database": "PostgreSQL",
+    "orm": "Prisma",
+    "auth": [
+      "email_password",
+      "oauth_optional"
+    ],
+    "paid_llm_dependency": false
+  },
+  "database_entities": [
+    "User",
+    "Profile",
+    "Friendship",
+    "Domain",
+    "Block",
+    "Skill",
+    "SkillPrerequisite",
+    "SkillLevel",
+    "Lesson",
+    "Exercise",
+    "ExerciseTest",
+    "UserSkillProgress",
+    "UserLevelProgress",
+    "Project",
+    "ProjectRequirement",
+    "ProjectSkill",
+    "ProjectSubmission",
+    "Boss",
+    "BossRequirement",
+    "BossGate",
+    "BossAttempt",
+    "BossGateResult",
+    "Team",
+    "TeamMember",
+    "Review",
+    "ReviewComment",
+    "Quest",
+    "QuestRequirement",
+    "UserQuestProgress",
+    "Badge",
+    "UserBadge",
+    "Cosmetic",
+    "UserCosmetic",
+    "AvatarConfiguration",
+    "XPTransaction",
+    "Notification",
+    "Submission",
+    "Evaluation",
+    "TestResult"
+  ],
+  "v1_scope": {
+    "web": {
+      "frontend": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "TypeScript",
+        "Browser JavaScript",
+        "React",
+        "React + TypeScript"
+      ],
+      "backend": [
+        "Node.js",
+        "Node.js + TypeScript",
+        "Python",
+        "Go",
+        "REST API",
+        "Authentication"
+      ],
+      "database": [
+        "Database Fundamentals",
+        "MySQL",
+        "PostgreSQL",
+        "MongoDB"
+      ],
+      "tooling": [
+        "Git"
+      ]
+    },
+    "logic_algorithms": [
+      "C",
+      "C++",
+      "Python",
+      "Fundamentals",
+      "Strings",
+      "Arrays",
+      "Memory",
+      "Recursion",
+      "Sorting",
+      "Searching",
+      "Data Structures",
+      "Parsing",
+      "Graphs"
+    ],
+    "content_targets": {
+      "exercises": "30-50",
+      "challenges": "10",
+      "web_projects": "5-10",
+      "algo_projects": "5-10",
+      "coop_modules": "several",
+      "timed_projects": "several",
+      "quests": "20+",
+      "badges": "10+",
+      "cosmetics": "10+"
+    }
+  },
+  "development_order": [
+    "architecture_database",
+    "authentication",
+    "user_profile",
+    "domains_blocks_skills",
+    "xp_ranks",
+    "skill_tree",
+    "lessons",
+    "exercises",
+    "automated_testing",
+    "projects",
+    "quests",
+    "avatar_cosmetics",
+    "friends",
+    "peer_review",
+    "coop",
+    "timed_projects",
+    "boss_engine",
+    "boss_statistics",
+    "enterprise_core",
+    "atlas"
+  ],
+  "not_v1": [
+    "public_matchmaking",
+    "realtime_collaborative_ide",
+    "voice_chat",
+    "global_competitive_leaderboard",
+    "paid_ai_tutor",
+    "paid_ai_correction",
+    "marketplace",
+    "payments",
+    "native_mobile_app",
+    "large_public_hackathons"
+  ],
+  "v1_success_flow": [
+    "create_account",
+    "create_avatar",
+    "choose_domain",
+    "open_skill_tree",
+    "learn",
+    "complete_exercise",
+    "pass_automated_tests",
+    "gain_xp",
+    "increase_rank",
+    "complete_project",
+    "unlock_git_main_quest",
+    "complete_git_rank_E",
+    "submit_project_by_commit",
+    "complete_quest",
+    "unlock_cosmetic",
+    "add_friend",
+    "peer_review",
+    "coop_project",
+    "timed_project",
+    "reach_rank_S",
+    "unlock_block_boss",
+    "beat_block_boss",
+    "unlock_domain_final_boss",
+    "attempt_domain_final_boss",
+    "become_domain_master"
+  ],
+  "git_progression": {
+    "philosophy": "Git est une compétence transversale rendue obligatoire progressivement.",
+    "initial_mode": {
+      "git_required": false,
+      "submission_mode": "INLINE_EDITOR",
+      "description": "Les premiers modules utilisent l'éditeur intégré et les boutons Exécuter / Soumettre."
+    },
+    "unlock_trigger": {
+      "type": "progression_gate",
+      "description": "Avant les premiers projets avancés ou multi-fichiers, une quête principale introduit Git.",
+      "main_quest_example": {
+        "name": "Découvrir Git",
+        "objectives": [
+          "Comprendre le versionnement",
+          "Initialiser un repository",
+          "Utiliser git status",
+          "Ajouter des fichiers avec git add",
+          "Créer un commit",
+          "Consulter l'historique"
+        ]
+      }
+    },
+    "rank_requirements": {
+      "E": {
+        "purpose": "Première autonomie avec un repository local.",
+        "topics": [
+          "Pourquoi Git existe",
+          "Repository",
+          "git init",
+          "git status",
+          "git add",
+          "git commit",
+          "git log",
+          "modifier puis recommiter",
+          ".gitignore"
+        ],
+        "required_for": [
+          "advanced_projects",
+          "multi_file_projects"
+        ]
+      },
+      "D": {
+        "purpose": "Collaboration de base.",
+        "topics": [
+          "git clone",
+          "remote",
+          "push",
+          "pull",
+          "branches",
+          "git switch",
+          "merge",
+          "simple_conflict_resolution"
+        ],
+        "required_for": [
+          "coop_projects",
+          "team_projects"
+        ]
+      },
+      "C": {
+        "purpose": "Workflow professionnel de collaboration.",
+        "topics": [
+          "pull_requests",
+          "code_review",
+          "rebase",
+          "merge_strategies",
+          "tags",
+          "stash",
+          "revert",
+          "reset",
+          "history_analysis"
+        ],
+        "required_for": [
+          "advanced_peer_review",
+          "advanced_pull_request_workflows"
+        ]
+      },
+      "B_A_S": {
+        "purpose": "Maîtrise avancée de Git.",
+        "topics": [
+          "git_internals",
+          "advanced_rebase",
+          "bisect",
+          "hooks",
+          "worktrees",
+          "recovery",
+          "complex_conflict_resolution",
+          "team_workflows"
+        ]
+      }
+    },
+    "gates": {
+      "beginner_modules": "NONE",
+      "first_advanced_projects": "E",
+      "coop_projects": "D",
+      "advanced_peer_review": "C",
+      "block_bosses": "AT_LEAST_D_OR_PROJECT_SPECIFIC",
+      "domain_final_bosses": "C_OR_HIGHER"
+    },
+    "prerequisite_types": {
+      "technical": {
+        "description": "Prérequis directement liés à la technologie ou au sujet étudié."
+      },
+      "developer": {
+        "description": "Prérequis transversaux nécessaires pour travailler comme développeur, comme Git."
+      }
+    },
+    "submission_evolution": {
+      "before_git": {
+        "source_type": "INLINE",
+        "actions": [
+          "RUN",
+          "SUBMIT_CODE"
+        ]
+      },
+      "after_git": {
+        "source_type": "GIT",
+        "required_submission_data": [
+          "repository",
+          "branch",
+          "commit_sha"
+        ],
+        "action": "SUBMIT_COMMIT",
+        "rule": "Une soumission Git cible toujours un commit précis."
+      },
+      "coop": {
+        "workflow": [
+          "feature_branch",
+          "pull_request",
+          "peer_review",
+          "approval",
+          "merge",
+          "automated_validation"
+        ]
+      }
+    },
+    "progression_rules": {
+      "rank_E_is_for_absolute_beginners": true,
+      "git_not_required_to_start_other_skills": true,
+      "git_E_required_for": [
+        "first_advanced_projects",
+        "multi_file_projects"
+      ],
+      "git_D_required_for": [
+        "coop_projects",
+        "team_projects"
+      ],
+      "git_C_required_for": [
+        "advanced_peer_review",
+        "advanced_pull_request_workflows"
+      ],
+      "domain_final_boss_git_requirement": "C_or_higher"
+    }
+  },
+  "evaluation_engine": {
+    "core_principle": "Correction déterministe autant que possible, sans dépendance à une IA payante.",
+    "submission_types": {
+      "INLINE": {
+        "use_cases": [
+          "beginner_exercises",
+          "small_algorithmic_exercises",
+          "early_rank_E_and_D_content"
+        ],
+        "fields": [
+          "exerciseId",
+          "language",
+          "sourceCode",
+          "submissionId"
+        ]
+      },
+      "GIT": {
+        "use_cases": [
+          "advanced_projects",
+          "multi_file_projects",
+          "coop_projects",
+          "bosses",
+          "domain_final_bosses"
+        ],
+        "required_fields": [
+          "repositoryUrl",
+          "branch",
+          "commitSha"
+        ],
+        "rule": "Une évaluation Git cible toujours un commit précis."
+      }
+    },
+    "pipeline": [
+      "submission_created",
+      "static_constraint_check",
+      "compile_or_build",
+      "sandbox_execution",
+      "visible_tests",
+      "hidden_tests",
+      "memory_checks_if_applicable",
+      "performance_checks_if_applicable",
+      "gate_evaluation",
+      "result_persisted",
+      "xp_and_progression_awarded_if_valid"
+    ],
+    "statuses": [
+      "QUEUED",
+      "RUNNING",
+      "PASSED",
+      "FAILED",
+      "ERROR"
+    ],
+    "static_checks": [
+      "required_files",
+      "required_function_signature",
+      "allowed_functions",
+      "forbidden_functions",
+      "forbidden_language_features",
+      "project_structure_rules"
+    ],
+    "language_execution_examples": {
+      "c": {
+        "compile": "cc -Wall -Wextra -Werror main.c solution.c -o program",
+        "run": "./program"
+      },
+      "cpp": {
+        "compile": "c++ -Wall -Wextra -Werror -std=c++20 main.cpp solution.cpp -o program",
+        "run": "./program"
+      },
+      "python": {
+        "run": "python3 main.py"
+      },
+      "javascript": {
+        "run": "node solution.js"
+      },
+      "go": {
+        "run": "go test ./..."
+      },
+      "react_next": {
+        "steps": [
+          "install_dependencies",
+          "npm_run_build",
+          "unit_tests",
+          "e2e_tests"
+        ]
+      }
+    },
+    "sandbox": {
+      "mandatory": true,
+      "rules": [
+        "never_execute_user_code_in_main_server_process",
+        "ephemeral_environment",
+        "cpu_limit",
+        "memory_limit",
+        "execution_timeout",
+        "network_disabled_by_default",
+        "no_access_to_main_database",
+        "no_access_to_application_secrets",
+        "restricted_filesystem"
+      ],
+      "flow": [
+        "main_platform",
+        "job_queue",
+        "evaluation_worker",
+        "sandbox",
+        "result"
+      ]
+    },
+    "tests": {
+      "visible_tests": true,
+      "hidden_tests": true,
+      "hidden_test_content_never_sent_to_browser": true,
+      "feedback_can_reveal_category_without_exact_test": true
+    },
+    "memory_validation": {
+      "languages": [
+        "c",
+        "cpp"
+      ],
+      "tools": [
+        "AddressSanitizer",
+        "Valgrind"
+      ],
+      "failures": [
+        "memory_leak",
+        "invalid_read",
+        "invalid_write",
+        "double_free",
+        "use_after_free"
+      ]
+    },
+    "performance_validation": {
+      "enabled_for_advanced_content": true,
+      "metrics": [
+        "execution_time",
+        "peak_memory",
+        "dataset_size"
+      ]
+    },
+    "web_project_validation": {
+      "source": "git_commit",
+      "steps": [
+        "clone_repository",
+        "checkout_commit",
+        "install_dependencies",
+        "build",
+        "start_application",
+        "api_tests",
+        "unit_tests",
+        "integration_tests",
+        "playwright_e2e",
+        "responsive_checks",
+        "accessibility_checks",
+        "security_checks"
+      ]
+    },
+    "result_model": {
+      "philosophy": "Préférer des gates obligatoires à une moyenne globale.",
+      "rule": "Un gate obligatoire échoué bloque la validation.",
+      "boss_rule": "Tous les gates obligatoires doivent être validés."
+    },
+    "feedback_by_rank": {
+      "E": {
+        "detail_level": "very_detailed",
+        "description": "Feedback très pédagogique et précis."
+      },
+      "D": {
+        "detail_level": "detailed",
+        "description": "Feedback clair avec indications suffisantes."
+      },
+      "C": {
+        "detail_level": "moderate",
+        "description": "Feedback utile mais moins guidé."
+      },
+      "B": {
+        "detail_level": "category_only",
+        "description": "Indication de la catégorie du problème."
+      },
+      "A": {
+        "detail_level": "minimal",
+        "description": "Très peu d'informations."
+      },
+      "S": {
+        "detail_level": "pass_fail_or_minimal",
+        "description": "Presque uniquement validation ou échec."
+      },
+      "BOSS": {
+        "detail_level": "gate_only",
+        "description": "Le joueur voit principalement les gates échoués."
+      }
+    },
+    "v1_mvp_priority": {
+      "first_target": "C ft_strlen",
+      "first_complete_pipeline": [
+        "inline_editor",
+        "submit_code",
+        "forbidden_function_check",
+        "compile",
+        "sandbox",
+        "visible_tests",
+        "hidden_tests",
+        "memory_check",
+        "gate_result",
+        "xp_award"
+      ],
+      "recommended_expansion_order": [
+        "C",
+        "C++",
+        "Python",
+        "JavaScript",
+        "HTML_CSS",
+        "React",
+        "Git_projects"
+      ]
+    }
+  },
+  "evaluation_data_models": {
+    "Submission": {
+      "fields": [
+        "id",
+        "userId",
+        "exerciseId",
+        "projectId",
+        "bossId",
+        "language",
+        "sourceType",
+        "sourceCode",
+        "repositoryUrl",
+        "branch",
+        "commitSha",
+        "status",
+        "createdAt",
+        "startedAt",
+        "finishedAt"
+      ],
+      "sourceType": [
+        "INLINE",
+        "GIT"
+      ],
+      "status": [
+        "QUEUED",
+        "RUNNING",
+        "PASSED",
+        "FAILED",
+        "ERROR"
+      ]
+    },
+    "Evaluation": {
+      "fields": [
+        "submissionId",
+        "constraintPassed",
+        "compilePassed",
+        "testsPassed",
+        "memoryPassed",
+        "performancePassed",
+        "executionTimeMs",
+        "memoryUsedMb"
+      ]
+    },
+    "TestResult": {
+      "fields": [
+        "evaluationId",
+        "testId",
+        "passed",
+        "executionTimeMs",
+        "memoryUsedMb",
+        "visible",
+        "feedbackCategory",
+        "feedback"
+      ]
+    }
+  }
+}

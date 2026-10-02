@@ -5,6 +5,7 @@ const Landing = lazy(() => import('./pages/Landing'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const Profile = lazy(() => import('./pages/Profile'))
+const Paths = lazy(() => import('./pages/Paths'))
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/connexion" element={<Login />} />
           <Route path="/inscription" element={<Register />} />
           <Route path="/profil" element={<Profile />} />
+          <Route path="/parcours" element={<Paths />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

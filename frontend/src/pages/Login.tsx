@@ -1,14 +1,19 @@
 import { useState, type FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { ArrowRight, Eye, EyeOff, LockKeyhole, UserRound } from 'lucide-react'
 import AuthShell from '../components/AuthShell'
 import { login } from '../lib/authApi'
 import { useAuthMutation } from '../hooks/useAuthMutation'
+import { isRecord } from '../lib/api'
 
 type LoginErrors = { username?: string; password?: string }
 
 function Login() {
   const navigate = useNavigate()
+  const location = useLocation()
+  const state: unknown = location.state
+  const destination = isRecord(state) && typeof state.from === 'string' &&
+    (state.from === '/parcours' || state.from.startsWith('/parcours?')) ? state.from : '/profil'
   const [showPassword, setShowPassword] = useState(false)
   const [errors, setErrors] = useState<LoginErrors>({})
   const { submit, submitting, error, clearError } = useAuthMutation()
@@ -29,7 +34,7 @@ function Login() {
     if (Object.keys(nextErrors).length > 0) return
 
     if (await submit(signal => login(username, password, signal))) {
-      navigate('/profil', { replace: true })
+      navigate(destination, { replace: true })
     }
   }
 

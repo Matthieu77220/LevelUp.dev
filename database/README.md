@@ -42,6 +42,10 @@ soumissions Git sans SHA complet (40 ou 64 caracteres). Une cle etrangere
 composee conserve la coherence du username entre comptes et profils. Si des
 donnees existantes violent ces contraintes, la migration echoue sans les effacer.
 
+`0004_learning_catalog` initialise les deux domaines, treize blocs et trente-trois
+competences de la V3. Les nouvelles progressions sont creees a la demande par
+l'API ; cette migration n'attribue aucune progression ou XP aux comptes existants.
+
 Les schemas PostgreSQL sont separes par responsabilite :
 
 - `identity` : comptes et profils ;

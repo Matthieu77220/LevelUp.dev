@@ -53,7 +53,7 @@ function Landing() {
           {menuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
         <nav className={menuOpen ? 'nav-links is-open' : 'nav-links'} aria-label="Navigation principale">
-          <a href="#parcours" onClick={closeMenu}>Parcours</a>
+          <Link to="/parcours" onClick={closeMenu}>Parcours</Link>
           <a href="#progression" onClick={closeMenu}>Progression</a>
           <a href="#interface" onClick={closeMenu}>Interface</a>
           <a href="#boss" onClick={closeMenu}>Boss</a>
@@ -75,7 +75,7 @@ function Landing() {
             <p className="hero-lead">Transforme chaque ligne de code en expérience. Maîtrise les compétences, monte de rang et affronte des projets qui prouvent ton niveau.</p>
             <div className="hero-actions">
               <Link className="button button-primary" to="/inscription">Commencer l’ascension <ArrowRight size={18} /></Link>
-              <a className="button button-ghost" href="#parcours"><Play size={17} fill="currentColor" /> Explorer le système</a>
+              <Link className="button button-ghost" to="/parcours"><Play size={17} fill="currentColor" /> Explorer les parcours</Link>
             </div>
             <dl className="hero-stats">
               <div><dt>2</dt><dd>Domaines majeurs</dd></div>

@@ -17,6 +17,7 @@ import (
 	"levelup.dev/backend/internal/auth"
 	"levelup.dev/backend/internal/config"
 	"levelup.dev/backend/internal/httpapi"
+	"levelup.dev/backend/internal/learning"
 )
 
 func main() {
@@ -61,7 +62,7 @@ func run(logger *slog.Logger) error {
 
 	server := &http.Server{
 		Addr:              cfg.Address,
-		Handler:           httpapi.NewRouter(authHandler, cfg.FrontendOrigin, logger, pool.Ping),
+		Handler:           httpapi.NewRouter(authHandler, learning.NewHandler(learning.NewStore(pool), logger), cfg.FrontendOrigin, logger, pool.Ping),
 		ReadHeaderTimeout: 5 * time.Second,
 		ReadTimeout:       10 * time.Second,
 		WriteTimeout:      15 * time.Second,

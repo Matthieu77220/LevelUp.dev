@@ -11,8 +11,13 @@ des jeux de role.
 - `docs/` : modele conceptuel et [bilan technique](docs/audit.md).
 
 Fonctionnel : landing, inscription, connexion, profil de compte, restauration
-de session et deconnexion. Les cours, quetes, evaluations et boss restent a
-implementer ; les exemples de progression de la landing sont une maquette.
+de session, deconnexion et espace `/parcours` : 2 domaines, 13 blocs,
+33 competences, recherche et demarrage persistant au rang E sans attribution
+d'XP. Les cours, quetes, evaluations et boss restent a implementer ; les
+exemples de progression de la landing sont une maquette.
+
+Le [suivi V3](docs/roadmap-v3.md) detaille ce jalon et les prochaines etapes a
+partir du [cahier des charges original](docs/developer_leveling_system_spec_v3.json).
 
 ## Lancer en local (PowerShell)
 

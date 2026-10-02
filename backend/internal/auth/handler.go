@@ -179,22 +179,38 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handler) Me(w http.ResponseWriter, r *http.Request) {
+	user, ok := h.currentUser(w, r)
+	if ok {
+		writeJSON(w, http.StatusOK, map[string]any{"user": user})
+	}
+}
+
+// RequireUser passes only the identity verified from the session cookie.
+func (h *Handler) RequireUser(next func(http.ResponseWriter, *http.Request, User)) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if user, ok := h.currentUser(w, r); ok {
+			next(w, r, user)
+		}
+	}
+}
+
+func (h *Handler) currentUser(w http.ResponseWriter, r *http.Request) (User, bool) {
 	_, tokenHash, ok := h.sessionFromRequest(w, r)
 	if !ok {
-		return
+		return User{}, false
 	}
 	user, err := h.store.UserBySession(r.Context(), tokenHash)
 	if err != nil {
 		if errors.Is(err, pgx.ErrNoRows) {
 			h.clearSessionCookie(w)
 			writeError(w, http.StatusUnauthorized, "UNAUTHENTICATED", "Session absente ou expirée.")
-			return
+			return User{}, false
 		}
 		h.logger.Error("session lookup failed", "error", err)
 		writeError(w, http.StatusInternalServerError, "INTERNAL_ERROR", "Une erreur interne est survenue.")
-		return
+		return User{}, false
 	}
-	writeJSON(w, http.StatusOK, map[string]any{"user": user})
+	return user, true
 }
 
 func (h *Handler) Logout(w http.ResponseWriter, r *http.Request) {

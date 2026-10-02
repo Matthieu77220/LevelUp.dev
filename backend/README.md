@@ -23,7 +23,14 @@ L'API ecoute par defaut sur `http://localhost:8081` et accepte le frontend
 - `POST /api/v1/auth/login`
 - `POST /api/v1/auth/logout`
 - `GET /api/v1/auth/me`
+- `GET /api/v1/learning/catalog` (session requise)
+- `POST /api/v1/learning/skills/{skillID}/start` (session et origine requises)
 - `GET /health`
+
+Le catalogue expose uniquement les domaines, blocs et competences publies,
+avec la progression du compte connecte. Le demarrage est idempotent : passage
+de UNRANKED a E, sans XP et sans remettre a zero les acquis. Les prerequis
+sont controles cote serveur. Voir [le suivi V3](../docs/roadmap-v3.md).
 
 Les requetes d'ecriture provenant du navigateur doivent fournir un en-tete
 `Origin` correspondant a `FRONTEND_ORIGIN`. Les sessions sont transmises par

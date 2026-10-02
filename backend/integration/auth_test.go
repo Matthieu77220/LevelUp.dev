@@ -22,10 +22,12 @@ import (
 	"levelup.dev/backend/internal/auth"
 	"levelup.dev/backend/internal/config"
 	"levelup.dev/backend/internal/httpapi"
+	"levelup.dev/backend/internal/learning"
 )
 
 // Opt-in: requires CREATEDB. Every migration and request uses a disposable database.
-func TestAuthWithPostgres(t *testing.T) {
+func newTestDatabase(t *testing.T) *pgxpool.Pool {
+	t.Helper()
 	if os.Getenv("RUN_DATABASE_TESTS") != "1" {
 		t.Skip("set RUN_DATABASE_TESTS=1 with local PostgreSQL running")
 	}
@@ -40,7 +42,7 @@ func TestAuthWithPostgres(t *testing.T) {
 	if err != nil {
 		t.Fatal("open admin database")
 	}
-	defer admin.Close()
+	t.Cleanup(admin.Close)
 	var suffix [8]byte
 	if _, err := rand.Read(suffix[:]); err != nil {
 		t.Fatal(err)
@@ -50,13 +52,13 @@ func TestAuthWithPostgres(t *testing.T) {
 	if _, err := admin.Exec(ctx, "CREATE DATABASE "+identifier); err != nil {
 		t.Fatal(err)
 	}
-	defer func() {
+	t.Cleanup(func() {
 		cleanup, stop := context.WithTimeout(context.Background(), 10*time.Second)
 		defer stop()
 		if _, err := admin.Exec(cleanup, "DROP DATABASE "+identifier+" WITH (FORCE)"); err != nil {
 			t.Errorf("cleanup %s: %v", name, err)
 		}
-	}()
+	})
 	poolCfg, err := pgxpool.ParseConfig(cfg.DatabaseURL)
 	if err != nil {
 		t.Fatal("parse database config")
@@ -66,7 +68,7 @@ func TestAuthWithPostgres(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	defer pool.Close()
+	t.Cleanup(pool.Close)
 	if _, err := pool.Exec(ctx, "CREATE SCHEMA app_private"); err != nil {
 		t.Fatal(err)
 	}
@@ -83,12 +85,19 @@ func TestAuthWithPostgres(t *testing.T) {
 			t.Fatalf("migration %s: %v", file, err)
 		}
 	}
+	return pool
+}
+
+func TestAuthWithPostgres(t *testing.T) {
+	pool := newTestDatabase(t)
+	ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
+	defer cancel()
 	logger := slog.New(slog.NewTextHandler(io.Discard, nil))
 	handler, err := auth.NewHandler(auth.NewStore(pool), "test_session", false, time.Hour, logger)
 	if err != nil {
 		t.Fatal(err)
 	}
-	router := httpapi.NewRouter(handler, "http://localhost:5173", logger, pool.Ping)
+	router := httpapi.NewRouter(handler, learning.NewHandler(learning.NewStore(pool), logger), "http://localhost:5173", logger, pool.Ping)
 	call := func(method, path string, body any, cookie *http.Cookie, status int) *httptest.ResponseRecorder {
 		t.Helper()
 		data, err := json.Marshal(body)

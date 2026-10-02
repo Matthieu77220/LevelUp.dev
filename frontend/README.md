@@ -15,6 +15,9 @@ npm run test:e2e
 
 `/` : landing ; `/inscription` et `/connexion` : formulaires ; `/profil` : compte
 charge via `/auth/me`, redirection connexion si session absente.
+`/parcours` : catalogue personnel, selection d'un domaine, recherche et
+demarrage d'une competence. Les parametres `domaine` et `competence` permettent
+un lien direct ; la connexion restaure cette destination.
 Les sessions restent dans un cookie HttpOnly, sans token en localStorage.
 
 Le client API valide les statuts HTTP et les donnees du profil avant de les
@@ -22,6 +25,9 @@ afficher. Une reponse 401 renvoie vers la connexion, meme sans corps JSON ;
 seul un statut 204 confirme une deconnexion. Les formulaires partagent le hook
 `useAuthMutation`, qui empeche les envois concurrents et annule les requetes
 lorsqu'on quitte la page. La lecture du profil est egalement annulable.
+Le transport partage est dans `src/lib/api.ts`, le contrat du catalogue dans
+`src/lib/learningApi.ts`. Les cours ne sont pas encore publies ; le demarrage
+enregistre uniquement le point d'entree E a zero XP.
 
 Vite lit le `.env` racine. Ne jamais mettre de secret dans une variable `VITE_*`.
 `/api/v1` est l'URL par defaut, relayee en developpement vers `API_PROXY_TARGET`

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { LogOut, RotateCw } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ArrowRight, LogOut, RotateCw } from 'lucide-react'
 import AuthShell from '../components/AuthShell'
 import { AuthApiError, getMe, logout, type AuthResponse } from '../lib/authApi'
 import { useAuthMutation } from '../hooks/useAuthMutation'
@@ -40,6 +40,7 @@ export default function Profile() {
       alternateText="" alternateLabel="Retour à l’accueil" alternateTo="/">
       <div className="auth-form">
         {user && <p>Compte créé le {new Date(user.createdAt).toLocaleDateString('fr-FR')}.</p>}
+        {user && <Link className="auth-submit" to="/parcours">Explorer mes parcours <ArrowRight size={18} /></Link>}
         {error && <p className="auth-status is-error" role="alert">{error}</p>}
         {!user && loadError && <button className="auth-submit" onClick={() => { setLoadError(''); setAttempt(value => value + 1) }}><RotateCw size={18} /> Réessayer</button>}
         {user && <button className="auth-submit" disabled={submitting} onClick={signOut}><LogOut size={18} /> {submitting ? 'Déconnexion…' : 'Se déconnecter'}</button>}
